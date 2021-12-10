@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MyFinalProject_Capstone</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_create_new_team">Create New Team</string>
+    <string name="btn_join_existing_team">Join Existing Team</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_password">Password</string>
+    <string name="tv_code">Code</string>
+    <!--item_letter-->
+    <string name="permit">Surat Izin</string>
+    <string name="description">Deskripsi</string>
+    <string name="submit">Submit</string>
+    <string name="delete">Hapus</string>
+    <string name="date">Date</string>
+    <string name="name_staff">Mico Winaryo Dwi Putranto</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="type_leave">Tipe Surat Izin</string>
+    <!--Drop Down Item-->
+    <string-array name="item_dropdown">
+        <item>Surat Izin</item>
+        <item>Surat Sakit</item>
+        <item>Surat Cuti</item>
+    </string-array>
+</resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "871698251100",
+    "project_id": "capstone-dicoding",
+    "storage_bucket": "capstone-dicoding.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871698251100:android:745688c6db06a8b35f5599",
+        "android_client_info": {
+          "package_name": "com.example.myfinalproject_capstone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "871698251100-0d9von8oon6no6jhb1f9ea6b7a35vdmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrYBv9VOItVtLTrizQf7VdbutaPuGZ2GM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "871698251100-0d9von8oon6no6jhb1f9ea6b7a35vdmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
