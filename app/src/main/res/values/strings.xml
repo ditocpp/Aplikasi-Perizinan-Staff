@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyFinalProject_Capstone</string>
+    <string name="app_name">IzinBoss</string>
     <string name="btn_login">Login</string>
     <string name="btn_create_new_team">Create New Team</string>
     <string name="btn_join_existing_team">Join Existing Team</string>
