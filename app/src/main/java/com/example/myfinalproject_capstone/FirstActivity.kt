@@ -8,16 +8,16 @@ import com.example.myfinalproject_capstone.databinding.ActivityFirstBinding
 
 class FirstActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var binding: ActivityFirstBinding
+    private var binding: ActivityFirstBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding!!.root)
 
-        binding.btnLogin.setOnClickListener(this)
-        binding.btnSignupCompany.setOnClickListener(this)
-        binding.btnSignupUser.setOnClickListener(this)
+        binding!!.btnLogin.setOnClickListener(this)
+        binding!!.btnSignupCompany.setOnClickListener(this)
+        binding!!.btnSignupUser.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -35,5 +35,10 @@ class FirstActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(moveIntent)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

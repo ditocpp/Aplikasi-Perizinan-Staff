@@ -8,17 +8,22 @@ import com.google.android.material.snackbar.Snackbar
 
 class StaffHomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityStaffHomeBinding
+    private var binding: ActivityStaffHomeBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityStaffHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding!!.root)
 
-        binding.fabAdd.setOnClickListener { view ->
+        binding!!.fabAdd.setOnClickListener { view ->
             val intent = Intent(this@StaffHomeActivity, LetterAddActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

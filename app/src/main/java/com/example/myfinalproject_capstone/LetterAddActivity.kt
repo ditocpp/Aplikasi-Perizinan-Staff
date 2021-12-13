@@ -12,21 +12,21 @@ import java.util.*
 
 class LetterAddActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLetterAddBinding
+    private var binding: ActivityLetterAddBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLetterAddBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding!!.root)
 
         val typeLeaves = resources.getStringArray(R.array.item_dropdown)
         val arrayAdapter = ArrayAdapter(this, R.layout.item_drop_down, typeLeaves)
-        binding.edtTypeLeave.setAdapter(arrayAdapter)
+        binding!!.edtTypeLeave.setAdapter(arrayAdapter)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        binding.btnShowDateRangePicker.setOnClickListener{
+        binding!!.btnShowDateRangePicker.setOnClickListener{
             showDateRangePicker()
         }
     }
@@ -45,8 +45,8 @@ class LetterAddActivity : AppCompatActivity() {
             val endDate = datePicked.second
 
             if (startDate != null && endDate != null) {
-                binding.edtStartDatePicker.text = convertLongToDate(startDate)
-                binding.edtEndDatePicker.text = convertLongToDate(endDate)
+                binding?.edtStartDatePicker?.text = convertLongToDate(startDate)
+                binding?.edtEndDatePicker?.text = convertLongToDate(endDate)
             }
         }
     }
@@ -58,6 +58,11 @@ class LetterAddActivity : AppCompatActivity() {
             Locale.getDefault()
         )
         return format.format(date)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }
 

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_first.xml" value="0.264" />
+        <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_letter_add.xml" value="0.1721014492753623" />
+        <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_login.xml" value="0.1721014492753623" />
+        <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_manager_home.xml" value="0.1721014492753623" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
