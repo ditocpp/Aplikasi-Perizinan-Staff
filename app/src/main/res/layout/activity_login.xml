@@ -7,15 +7,24 @@
     android:padding="10dp"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:src="@drawable/login"
+        app:layout_constraintBottom_toTopOf="@+id/etEmailLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etEmailLayout"
         style="@style/EditTextGeneral"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <EditText
             android:id="@+id/et_Email"
             style="@style/EditTextGeneral"
@@ -44,18 +53,6 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-<!--    <EditText-->
-<!--        android:id="@+id/et_Password"-->
-<!--        style="@style/EditTextGeneral"-->
-<!--        android:background="@drawable/rounded_edittext"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:ems="10"-->
-<!--        android:hint="@string/tv_password"-->
-<!--        android:inputType="textPassword"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/et_Email"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/et_Email"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/et_Email" />-->
-
     <Button
         android:id="@+id/btn_Login"
         style="@style/ButtonGeneral"
@@ -65,12 +62,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPasswordLayout" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ini Login Activity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="206dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.example.myfinalproject_capstone.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.myfinalproject_capstone.databinding.ItemLetterBinding
 import com.example.myfinalproject_capstone.entity.Letter
 import kotlin.collections.ArrayList

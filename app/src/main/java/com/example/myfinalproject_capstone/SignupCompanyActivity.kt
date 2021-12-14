@@ -14,7 +14,12 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
 
     private var binding: ActivitySignupCompanyBinding? = null
     private var database: DatabaseReference? = null
-    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+
+    companion object {
+        private const val FIELD_IS_NOT_VALID = "Email tidak valid"
+        private const val FIELD_REQUIRED = "Field tidak boleh kosong"
+        private const val FIELD_WRONG = "Email atau Password salah"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,20 +36,29 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
         val msg_email: String = binding?.etEmail?.text.toString()
         val msg_password: String = binding?.etPassword?.text.toString()
 
-        if (msg_email.trim().isEmpty()) {
-            binding?.etEmail?.error = "Required"
-            Toast.makeText(applicationContext, "User Name Required ", Toast.LENGTH_SHORT).show()
+        if (msg_email.isEmpty()) {
+            binding?.etEmail?.error = FIELD_REQUIRED
+            return
         }
-        if (msg_password.trim().isEmpty()){
-            binding?.etPassword?.error = "Required"
-            Toast.makeText(applicationContext, "Password Required ", Toast.LENGTH_SHORT).show()
+        if (msg_password.isEmpty()){
+            binding?.etPassword?.error = FIELD_REQUIRED
+            return
         }
-        if (msg_email.matches(emailPattern.toRegex())) {
-            connectDatabase(msg_email, msg_password)
+
+        if (isValidEmail(msg_email)) {
+            try {
+                connectDatabase(msg_email, msg_password)
+            } catch (ex: Exception) {
+                Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
+            }
         } else {
-            binding?.etEmail?.error = "@gmail.com"
-            Toast.makeText(applicationContext, "email not valid", Toast.LENGTH_SHORT).show()
+            binding?.etEmail?.error = FIELD_IS_NOT_VALID
+            return
         }
+    }
+
+    private fun isValidEmail(email: CharSequence): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun connectDatabase(msg_email: String, msg_password: String) {

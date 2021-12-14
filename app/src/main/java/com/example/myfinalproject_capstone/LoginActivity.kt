@@ -16,7 +16,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
         private const val FIELD_IS_NOT_VALID = "Email tidak valid"
         private const val FIELD_REQUIRED = "Field tidak boleh kosong"
-        private const val FIELD_WRONG = "Email atau Password salah"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
