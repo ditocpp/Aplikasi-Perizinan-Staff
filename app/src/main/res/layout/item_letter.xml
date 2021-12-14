@@ -12,7 +12,6 @@
     android:layout_marginRight="8dp"
     android:layout_marginBottom="4dp"
     card_view:cardCornerRadius="4dp"
-    app:cardCornerRadius="4dp"
     app:cardElevation="4dp"
     app:cardMaxElevation="4dp"
     app:cardUseCompatPadding="true">
