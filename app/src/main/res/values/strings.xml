@@ -12,7 +12,8 @@
     <string name="submit">Submit</string>
     <string name="delete">Hapus</string>
     <string name="date">Date</string>
-    <string name="name_staff">Mico Winaryo Dwi Putranto</string>
+    <string name="name_manager">Mico Winaryo Dwi Putranto</string>
+    <string name="name_staff">Staff Name</string>
     <string name="title_activity_main">MainActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -20,6 +21,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="type_leave">Tipe Surat Izin</string>
+    <string name="waktu_izin">Waktu Izin</string>
     <!--Drop Down Item-->
     <string-array name="item_dropdown">
         <item>Surat Izin</item>
