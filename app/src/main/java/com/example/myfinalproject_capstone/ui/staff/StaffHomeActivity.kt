@@ -1,10 +1,13 @@
-package com.example.myfinalproject_capstone
+package com.example.myfinalproject_capstone.ui.staff
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.example.myfinalproject_capstone.AccountActivity
+import com.example.myfinalproject_capstone.LetterAddActivity
+import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.databinding.ActivityStaffHomeBinding
 
 class StaffHomeActivity : AppCompatActivity() {
@@ -17,7 +20,7 @@ class StaffHomeActivity : AppCompatActivity() {
         binding = ActivityStaffHomeBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        binding!!.fabAdd.setOnClickListener { view ->
+        binding!!.fabAddLetter.setOnClickListener { view ->
             val intent = Intent(this@StaffHomeActivity, LetterAddActivity::class.java)
             startActivity(intent)
         }

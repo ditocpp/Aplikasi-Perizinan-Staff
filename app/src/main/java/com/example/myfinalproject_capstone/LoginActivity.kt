@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.example.myfinalproject_capstone.databinding.ActivityLoginBinding
+import com.example.myfinalproject_capstone.ui.manager.ManagerHomeActivity
+import com.example.myfinalproject_capstone.ui.staff.StaffHomeActivity
 import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {

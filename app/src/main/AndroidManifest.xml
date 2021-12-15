@@ -17,13 +17,13 @@
         <activity
             android:name=".LetterAddActivity"
             android:exported="false"
-            android:parentActivityName=".StaffHomeActivity"></activity>
+            android:parentActivityName="com.example.myfinalproject_capstone.ui.staff.StaffHomeActivity"></activity>
         <activity
-            android:name=".ManagerHomeActivity"
+            android:name="com.example.myfinalproject_capstone.ui.manager.ManagerHomeActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".StaffHomeActivity"
+            android:name="com.example.myfinalproject_capstone.ui.staff.StaffHomeActivity"
             android:exported="false" />
         <activity
             android:name=".SignupCompanyActivity"

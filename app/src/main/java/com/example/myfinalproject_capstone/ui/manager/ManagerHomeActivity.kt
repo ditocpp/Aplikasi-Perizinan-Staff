@@ -1,4 +1,4 @@
-package com.example.myfinalproject_capstone
+package com.example.myfinalproject_capstone.ui.manager
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myfinalproject_capstone.AccountActivity
+import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.databinding.ActivityManagerHomeBinding
+import com.example.myfinalproject_capstone.ui.MyDialogHelp
 
 class ManagerHomeActivity : AppCompatActivity() {
 
@@ -19,9 +22,8 @@ class ManagerHomeActivity : AppCompatActivity() {
         setContentView(binding!!.root)
 
 
-        binding!!.fabAdd.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding!!.fabHelp.setOnClickListener { view ->
+            MyDialogHelp().show(supportFragmentManager, "mydialog")
         }
     }
 
