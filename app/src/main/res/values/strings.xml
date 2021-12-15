@@ -23,10 +23,15 @@
     <string name="type_leave">Tipe Surat Izin</string>
     <string name="waktu_izin">Waktu Izin</string>
     <string name="topbar_account">Account</string>
+    <string name="status">Pending / Accepted / Rejected</string>
+    <string name="tv_sampai_dengan">s/d</string>
     <!--Drop Down Item-->
     <string-array name="item_dropdown">
         <item>Surat Izin</item>
         <item>Surat Sakit</item>
         <item>Surat Cuti</item>
     </string-array>
+    <string name="approved">Approved</string>
+    <string name="rejected">Rejected</string>
+    <string name="pending">Pending</string>
 </resources>

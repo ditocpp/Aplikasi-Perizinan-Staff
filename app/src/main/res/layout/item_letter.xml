@@ -30,7 +30,7 @@
             android:text="@string/date"
             android:textSize="12sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/img_status"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.0" />
@@ -45,7 +45,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/img_status"
+            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_date"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_date"
             card_view:layout_constraintVertical_bias="0.0" />
@@ -59,7 +59,7 @@
             android:text="@string/name_manager"
             android:textSize="14sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/img_status"
+            card_view:layout_constraintEnd_toEndOf="@+id/tv_permit"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_permit"
             card_view:layout_constraintVertical_bias="0.0" />
@@ -80,7 +80,7 @@
             card_view:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/tv_permit_duration"
+            android:id="@+id/tv_permit_durationStart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -88,79 +88,57 @@
             android:text="@string/waktu_izin"
             android:textSize="14sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="@+id/tv_name_staff"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_description" />
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_description"
+            card_view:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_permit_durationFinish"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/waktu_izin"
+            android:textSize="14sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/tv_permit_durationStart"
+            card_view:layout_constraintTop_toTopOf="@+id/tv_permit_durationStart"
+            card_view:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="131dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_permit_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="start"
+            android:text="@string/status"
+            android:textSize="14sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/img_status"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_permit_durationStart" />
 
         <ImageView
             android:id="@+id/img_status"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginEnd="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/tv_item_date"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/check" />
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_permit_durationStart"
+            card_view:srcCompat="@drawable/ic_baseline_access_time_24" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_sampai_dengan"
+            card_view:layout_constraintBottom_toBottomOf="@+id/tv_permit_durationStart"
+            card_view:layout_constraintEnd_toStartOf="@+id/tv_permit_durationFinish"
+            card_view:layout_constraintHorizontal_bias="0.50"
+            card_view:layout_constraintStart_toEndOf="@+id/tv_permit_durationStart"
+            card_view:layout_constraintTop_toTopOf="@+id/tv_permit_durationStart" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
-
-
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:orientation="vertical">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_item_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        app:cardMaxElevation="4dp"
-        app:cardUseCompatPadding="true">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-            <TextView
-                android:id="@+id/tv_item_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:gravity="start"
-                android:text="@string/date"
-                android:textSize="12sp" />
-            <TextView
-                android:id="@+id/tv_permit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:gravity="start"
-                android:text="@string/permit"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tv_name_staff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:gravity="start"
-                android:text="@string/name_staff"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/tv_item_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="@string/description"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
--->

@@ -3,6 +3,7 @@ package com.example.myfinalproject_capstone.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.databinding.ItemLetterBinding
 import com.example.myfinalproject_capstone.entity.Letter
 import kotlin.collections.ArrayList
@@ -23,23 +24,30 @@ class LetterAdapter(private val listSurat: ArrayList<Letter>) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (inputDate, title, description, staffName, duration, status, statusImage ) = listSurat[position]
+        val (inputDate, title, description, staffName, durationStart, durationFinish, status) = listSurat[position]
 
         holder.binding.apply {
             tvItemDate.text = inputDate.toString()
             tvPermit.text = title
             tvItemDescription.text = description
             tvNameStaff.text = staffName
-            tvPermitDuration.text = duration.toString()
+            tvPermitDurationStart.text = durationStart.toString()
+            tvPermitDurationFinish.text = durationFinish.toString()
             when {
-                status===1 -> {
+                status == 0 -> {
                     TODO("APPROVED")
+                    tvPermitStatus.setText(R.string.approved)
+                    imgStatus.setImageResource(R.drawable.ic_baseline_check_24)
                 }
-                status===2 -> {
+                status == 1 -> {
                     TODO("REJECTED")
+                    tvPermitStatus.setText(R.string.rejected)
+                    imgStatus.setImageResource(R.drawable.ic_baseline_close_24)
                 }
                 else -> {
                     TODO("PENDING")
+                    tvPermitStatus.setText(R.string.pending)
+                    imgStatus.setImageResource(R.drawable.ic_baseline_access_time_24)
                 }
             }
             TODO("implement callback function")
