@@ -1,4 +1,4 @@
-package com.example.myfinalproject_capstone.ui
+package com.example.myfinalproject_capstone.ui.manager
 
 import android.app.AlertDialog
 import android.app.Dialog

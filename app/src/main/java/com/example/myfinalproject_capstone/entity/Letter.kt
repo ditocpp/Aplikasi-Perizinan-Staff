@@ -6,11 +6,13 @@ import java.util.*
 
 @Parcelize
 data class Letter (
-    val inputDate: Date? = null,
+    val letterID: String? = null,
+    val inputDate: String? = null,
     val title: String? = null,
     val description: String? = null,
-    val staffName: String? = null,
-    val durationStart: Date? = null,
-    val durationFinish: Date? = null,
+    val staffID: String? = null,
+    val companyID: String? = null,
+    val durationStart: String? = null,
+    val durationFinish: String? = null,
     val status: Int? = null
 ) : Parcelable

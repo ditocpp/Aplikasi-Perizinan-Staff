@@ -15,15 +15,15 @@
             android:name=".AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".LetterAddActivity"
+            android:name=".ui.staff.LetterAddActivity"
             android:exported="false"
-            android:parentActivityName="com.example.myfinalproject_capstone.ui.staff.StaffHomeActivity"></activity>
+            android:parentActivityName="com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity"></activity>
         <activity
-            android:name="com.example.myfinalproject_capstone.ui.manager.ManagerHomeActivity"
+            android:name="com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name="com.example.myfinalproject_capstone.ui.staff.StaffHomeActivity"
+            android:name="com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity"
             android:exported="false" />
         <activity
             android:name=".SignupCompanyActivity"

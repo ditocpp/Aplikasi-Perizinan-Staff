@@ -1,19 +1,28 @@
 package com.example.myfinalproject_capstone
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import com.example.myfinalproject_capstone.databinding.ActivityLoginBinding
-import com.example.myfinalproject_capstone.ui.manager.ManagerHomeActivity
-import com.example.myfinalproject_capstone.ui.staff.StaffHomeActivity
+import com.example.myfinalproject_capstone.datastore.MainViewModel
+import com.example.myfinalproject_capstone.datastore.SettingPreferences
+import com.example.myfinalproject_capstone.datastore.ViewModelFactory
+import com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity
+import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
 import com.google.firebase.database.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var binding: ActivityLoginBinding? = null
+    private lateinit var binding: ActivityLoginBinding
     private var database: DatabaseReference? = null
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "dataUser")
 
     companion object {
         private const val FIELD_IS_NOT_VALID = "Email tidak valid"
@@ -24,25 +33,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
+        setContentView(binding.root)
 
         database = FirebaseDatabase.getInstance("https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Users")
 
-        binding!!.btnLogin.setOnClickListener(this)
+        binding.btnLogin.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
 
-        val msg_email: String = binding?.etEmail?.text.toString().trim()
-        val msg_password: String = binding?.etPassword?.text.toString().trim()
+        val msg_email: String = binding.etEmail.text.toString().trim()
+        val msg_password: String = binding.etPassword.text.toString().trim()
 
         if (msg_email.isEmpty()) {
-            binding?.etEmail?.error = FIELD_REQUIRED
+            binding.etEmail.error = FIELD_REQUIRED
             return
         }
         if (msg_password.isEmpty()){
-            binding?.etPassword?.error = FIELD_REQUIRED
+            binding.etPassword.error = FIELD_REQUIRED
             return
         }
 
@@ -53,9 +62,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
             }
         } else {
-            binding?.etEmail?.error = FIELD_IS_NOT_VALID
+            binding.etEmail.error = FIELD_IS_NOT_VALID
             return
         }
+
     }
     private fun isValidEmail(email: CharSequence): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -69,6 +79,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         if (msg_email.equals(ds.child("email").value)
                             && msg_password.equals(ds.child("password").value)
                             && ds.child("position").value == "Staff") {
+
+                                datastore(ds.child("idUser").value as String, ds.child("email").value as String,
+                                    ds.child("password").value as String, ds.child("codeCompany").value as String,
+                                    ds.child("position").value as String)
+
                             val moveIntent = Intent(this@LoginActivity, StaffHomeActivity::class.java)
                             startActivity(moveIntent)
                         } else if (msg_email.equals(ds.child("email").value)
@@ -88,9 +103,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 
+    private fun datastore(id: String, email: String, password: String, codeCompany: String, position: String) {
+        val pref = SettingPreferences.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
+
+        mainViewModel.saveUserSetting(id, email, password, codeCompany, position)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        binding = null
         database = null
     }
 }
