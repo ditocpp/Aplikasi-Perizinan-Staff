@@ -22,6 +22,7 @@
     <string name="previous">Previous</string>
     <string name="type_leave">Tipe Surat Izin</string>
     <string name="waktu_izin">Waktu Izin</string>
+    <string name="topbar_account">Account</string>
     <!--Drop Down Item-->
     <string-array name="item_dropdown">
         <item>Surat Izin</item>

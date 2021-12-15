@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFinalProject_Capstone">
         <activity
+            android:name=".AccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".LetterAddActivity"
             android:exported="false"
-            android:parentActivityName=".StaffHomeActivity">
-
-        </activity>
+            android:parentActivityName=".StaffHomeActivity"></activity>
         <activity
             android:name=".ManagerHomeActivity"
             android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.MyFinalProject_Capstone.NoActionBar" />
+            android:label="@string/title_activity_main" />
         <activity
             android:name=".StaffHomeActivity"
             android:exported="false" />

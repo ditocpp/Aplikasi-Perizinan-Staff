@@ -3,8 +3,9 @@ package com.example.myfinalproject_capstone
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.example.myfinalproject_capstone.databinding.ActivityStaffHomeBinding
-import com.google.android.material.snackbar.Snackbar
 
 class StaffHomeActivity : AppCompatActivity() {
 
@@ -25,5 +26,17 @@ class StaffHomeActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.topbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intent = Intent(this@StaffHomeActivity, AccountActivity::class.java)
+        startActivity(intent)
+        return super.onOptionsItemSelected(item)
     }
 }

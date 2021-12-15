@@ -1,14 +1,15 @@
 package com.example.myfinalproject_capstone
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.AppBarConfiguration
 import com.example.myfinalproject_capstone.databinding.ActivityManagerHomeBinding
 
 class ManagerHomeActivity : AppCompatActivity() {
 
-    private var appBarConfiguration: AppBarConfiguration? = null
     private var binding: ActivityManagerHomeBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +28,17 @@ class ManagerHomeActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
-        appBarConfiguration = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.topbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intent = Intent(this@ManagerHomeActivity, AccountActivity::class.java)
+        startActivity(intent)
+        return super.onOptionsItemSelected(item)
     }
 }
