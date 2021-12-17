@@ -82,9 +82,7 @@ class LetterAddActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance("https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Letters")
 
-        if(isEmptyField()) {
-
-        } else {
+        if(!isEmptyField()) {
             val letterID = database!!.push().key
             val inputDate = getCurrentDate()
             val title = binding.edtTypeLeave.text.toString().trim()
@@ -149,10 +147,6 @@ class LetterAddActivity : AppCompatActivity() {
             binding.edtTypeLeave.error = null
         }
         return status
-    }
-
-    private fun isValidEmail(email: CharSequence): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun getCompanyID(): String? {

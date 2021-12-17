@@ -34,4 +34,12 @@
     <string name="approved">Approved</string>
     <string name="rejected">Rejected</string>
     <string name="pending">Pending</string>
+    <string name="acc_position">Position</string>
+    <string name="acc_password">Password</string>
+    <string name="acc_email">Email</string>
+    <string name="acc_nama">Nama</string>
+    <string name="msg_name">Mico Winaryo Dwi Putranto</string>
+    <string name="msg_email">mikowinaryo11@gmail.com</string>
+    <string name="mico_winaryo_dwi_putranto">Mico Winaryo Dwi Putranto</string>
+    <string name="msg_staff">staff</string>
 </resources>
