@@ -2,6 +2,7 @@ package com.example.myfinalproject_capstone.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.databinding.ItemLetterStaffBinding
@@ -49,8 +50,7 @@ class ListLetterStaffAdapter(private val listSurat: ArrayList<Letter>) : Recycle
                         }
                     }
                 itemView.setOnClickListener{
-                    //Deprecated
-                    onItemClickCallback.onItemClicked(listSurat[adapterPosition])
+                    Toast.makeText(itemView.context, "Kamu memilih " + letter.title, Toast.LENGTH_SHORT).show()
                 }
             }
         }

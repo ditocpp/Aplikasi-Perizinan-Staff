@@ -88,13 +88,6 @@ class StaffHomeActivity : AppCompatActivity() {
         binding.rvNotes.layoutManager = LinearLayoutManager(this)
         val listLetterAdapter = ListLetterStaffAdapter(list)
         binding.rvNotes.adapter = listLetterAdapter
-
-        listLetterAdapter.setOnItemClickCallback(object : ListLetterStaffAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: Letter) {
-                showSelectedHero(data)
-            }
-        })
-
     }
 
     private fun getUserID(): String? {
@@ -111,9 +104,5 @@ class StaffHomeActivity : AppCompatActivity() {
         )
 
         return userId
-    }
-
-    private fun showSelectedHero(letter: Letter) {
-        Toast.makeText(this, "Kamu memilih " + letter.title, Toast.LENGTH_SHORT).show()
     }
 }
