@@ -1,18 +1,14 @@
 package com.example.myfinalproject_capstone.entity
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-import java.util.*
 
-@Parcelize
 data class Letter (
-    val letterID: String? = null,
-    val inputDate: String? = null,
-    val title: String? = null,
-    val description: String? = null,
-    val staffID: String? = null,
-    val companyID: String? = null,
-    val durationStart: String? = null,
-    val durationFinish: String? = null,
-    val status: Int? = null
-) : Parcelable
+    var letterID: String? = null,
+    var inputDate: String? = null,
+    var title: String? = null,
+    var description: String? = null,
+    var staffID: String? = null,
+    var companyID: String? = null,
+    var durationStart: String? = null,
+    var durationFinish: String? = null,
+    var status: String? = null
+)

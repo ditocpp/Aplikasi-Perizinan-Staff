@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myfinalproject_capstone.AccountActivity
+import com.example.myfinalproject_capstone.ui.AccountActivity
 import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.databinding.ActivityManagerHomeBinding
 import com.example.myfinalproject_capstone.ui.manager.MyDialogHelp

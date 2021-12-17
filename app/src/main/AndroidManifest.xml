@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFinalProject_Capstone">
         <activity
-            android:name=".AccountActivity"
+            android:name=".ui.AccountActivity"
             android:exported="false" />
         <activity
             android:name=".ui.staff.LetterAddActivity"
@@ -26,13 +26,13 @@
             android:name="com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupCompanyActivity"
+            android:name=".ui.SignupCompanyActivity"
             android:exported="false" />
         <activity
-            android:name=".FirstActivity"
+            android:name=".ui.FirstActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".ui.SplashScreen"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>
@@ -42,10 +42,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignupActivity"
+            android:name=".ui.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true" />
     </application>
 

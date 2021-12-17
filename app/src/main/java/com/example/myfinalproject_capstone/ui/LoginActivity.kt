@@ -1,4 +1,4 @@
-package com.example.myfinalproject_capstone
+package com.example.myfinalproject_capstone.ui
 
 import android.content.Context
 import android.content.Intent

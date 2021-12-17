@@ -34,18 +34,15 @@ class LetterAdapter(private val listSurat: ArrayList<Letter>) : RecyclerView.Ada
             tvPermitDurationStart.text = durationStart.toString()
             tvPermitDurationFinish.text = durationFinish.toString()
             when {
-                status == 0 -> {
-                    TODO("APPROVED")
+                status.equals("0") -> {
                     tvPermitStatus.setText(R.string.approved)
                     imgStatus.setImageResource(R.drawable.ic_baseline_check_24)
                 }
-                status == 1 -> {
-                    TODO("REJECTED")
+                status.equals("1") -> {
                     tvPermitStatus.setText(R.string.rejected)
                     imgStatus.setImageResource(R.drawable.ic_baseline_close_24)
                 }
                 else -> {
-                    TODO("PENDING")
                     tvPermitStatus.setText(R.string.pending)
                     imgStatus.setImageResource(R.drawable.ic_baseline_access_time_24)
                 }

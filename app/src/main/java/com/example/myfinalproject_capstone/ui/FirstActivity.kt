@@ -1,9 +1,10 @@
-package com.example.myfinalproject_capstone
+package com.example.myfinalproject_capstone.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.databinding.ActivityFirstBinding
 
 class FirstActivity : AppCompatActivity(), View.OnClickListener {

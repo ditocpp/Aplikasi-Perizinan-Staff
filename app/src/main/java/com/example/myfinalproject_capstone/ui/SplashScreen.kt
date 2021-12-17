@@ -1,4 +1,4 @@
-package com.example.myfinalproject_capstone
+package com.example.myfinalproject_capstone.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.example.myfinalproject_capstone.R
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
