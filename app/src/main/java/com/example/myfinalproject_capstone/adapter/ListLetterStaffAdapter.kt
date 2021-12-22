@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.databinding.ItemLetterStaffBinding
 import com.example.myfinalproject_capstone.entity.Letter
-import com.example.myfinalproject_capstone.ui.staff.home.DetailLetterDialog
+import com.example.myfinalproject_capstone.ui.staff.home.DetailLetterActivity
 
 class ListLetterStaffAdapter(private val listSurat: ArrayList<Letter>) : RecyclerView.Adapter<ListLetterStaffAdapter.ListViewHolder>() {
 
@@ -45,8 +45,8 @@ class ListLetterStaffAdapter(private val listSurat: ArrayList<Letter>) : Recycle
                         }
                     }
                 itemView.setOnClickListener{
-                    val intent = Intent(itemView.context, DetailLetterDialog::class.java)
-                    intent.putExtra(DetailLetterDialog.EXTRA_LETTER, letter.letterID)
+                    val intent = Intent(itemView.context, DetailLetterActivity::class.java)
+                    intent.putExtra(DetailLetterActivity.EXTRA_LETTER, letter.letterID)
                     itemView.context.startActivity(intent)
                 }
             }

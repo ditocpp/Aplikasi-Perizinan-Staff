@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.staff.home.DetailLetterDialog">
+    tools:context=".ui.staff.home.DetailLetterActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp">
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/edt_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,12 +67,32 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btn_showDateRangePicker"
+        android:id="@+id/btn_delete"
+        android:layout_marginTop="20dp"
         style="@style/ButtonGeneral"
         android:backgroundTint="#C81B1B"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/delete" />
+
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_marginTop="20dp"
+        style="@style/ButtonGeneral"
+        android:backgroundTint="@color/blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit" />
+
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_marginTop="20dp"
+        style="@style/ButtonGeneral"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/close" />
 
 
 

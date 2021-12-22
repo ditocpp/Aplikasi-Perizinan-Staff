@@ -75,7 +75,7 @@ class StaffHomeActivity : AppCompatActivity() {
                     }
                     binding.rvNotes.adapter = ListLetterStaffAdapter(list)
                 } else {
-
+                    Toast.makeText(applicationContext, "Data Not Exist", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onCancelled(error: DatabaseError) {

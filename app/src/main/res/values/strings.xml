@@ -10,7 +10,7 @@
     <string name="permit">Surat Izin</string>
     <string name="description">Deskripsi</string>
     <string name="submit">Submit</string>
-    <string name="delete">Hapus</string>
+    <string name="delete">Delete</string>
     <string name="date">Date</string>
     <string name="name_manager">Mico Winaryo Dwi Putranto</string>
     <string name="name_staff">Staff Name</string>
@@ -44,4 +44,6 @@
     <string name="msg_staff">staff</string>
     <string name="start_date">Start Date</string>
     <string name="finish_date">Finish Date</string>
+    <string name="edit">EDIT</string>
+    <string name="close">close</string>
 </resources>

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFinalProject_Capstone">
         <activity
-            android:name=".ui.staff.home.DetailLetterDialog"
+            android:name=".ui.staff.home.DetailLetterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.AccountActivity"
