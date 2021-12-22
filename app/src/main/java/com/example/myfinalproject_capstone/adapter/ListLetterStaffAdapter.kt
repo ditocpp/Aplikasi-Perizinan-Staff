@@ -1,20 +1,15 @@
 package com.example.myfinalproject_capstone.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.databinding.ItemLetterStaffBinding
 import com.example.myfinalproject_capstone.entity.Letter
+import com.example.myfinalproject_capstone.ui.staff.home.DetailLetterDialog
 
 class ListLetterStaffAdapter(private val listSurat: ArrayList<Letter>) : RecyclerView.Adapter<ListLetterStaffAdapter.ListViewHolder>() {
-
-    private lateinit var onItemClickCallback: OnItemClickCallback
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
         val binding = ItemLetterStaffBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -50,13 +45,11 @@ class ListLetterStaffAdapter(private val listSurat: ArrayList<Letter>) : Recycle
                         }
                     }
                 itemView.setOnClickListener{
-                    Toast.makeText(itemView.context, "Kamu memilih " + letter.title, Toast.LENGTH_SHORT).show()
+                    val intent = Intent(itemView.context, DetailLetterDialog::class.java)
+                    intent.putExtra(DetailLetterDialog.EXTRA_LETTER, letter.letterID)
+                    itemView.context.startActivity(intent)
                 }
             }
         }
-    }
-
-    interface OnItemClickCallback {
-        fun onItemClicked(data: Letter)
     }
 }

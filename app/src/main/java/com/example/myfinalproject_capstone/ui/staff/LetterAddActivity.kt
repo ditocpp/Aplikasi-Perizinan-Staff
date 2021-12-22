@@ -16,8 +16,6 @@ import com.example.myfinalproject_capstone.datastore.MainViewModel
 import com.example.myfinalproject_capstone.datastore.SettingPreferences
 import com.example.myfinalproject_capstone.datastore.ViewModelFactory
 import com.example.myfinalproject_capstone.entity.Letter
-import com.example.myfinalproject_capstone.ui.AccountActivity
-import com.example.myfinalproject_capstone.ui.LoginActivity
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.DatabaseReference
@@ -62,13 +60,13 @@ class LetterAddActivity : AppCompatActivity() {
             val endDate = datePicked.second
 
             if (startDate != null && endDate != null) {
-                binding.edtStartDatePicker.text = convertLongToDate(startDate)
-                binding.edtEndDatePicker.text = convertLongToDate(endDate)
+                binding.edtStartDatePicker.setText(convertLongToDate(startDate))
+                binding.edtEndDatePicker.setText(convertLongToDate(endDate))
             }
         }
     }
 
-    private fun convertLongToDate(time: Long): String? {
+    private fun convertLongToDate(time: Long): String {
         val date = Date(time)
         val format = SimpleDateFormat (
             "dd-MM-yyyy",

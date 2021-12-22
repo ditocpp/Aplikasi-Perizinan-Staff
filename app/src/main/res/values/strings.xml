@@ -42,4 +42,6 @@
     <string name="msg_email">mikowinaryo11@gmail.com</string>
     <string name="mico_winaryo_dwi_putranto">Mico Winaryo Dwi Putranto</string>
     <string name="msg_staff">staff</string>
+    <string name="start_date">Start Date</string>
+    <string name="finish_date">Finish Date</string>
 </resources>

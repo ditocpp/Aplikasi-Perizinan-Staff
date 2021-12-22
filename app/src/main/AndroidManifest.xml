@@ -12,18 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFinalProject_Capstone">
         <activity
+            android:name=".ui.staff.home.DetailLetterDialog"
+            android:exported="false" />
+        <activity
             android:name=".ui.AccountActivity"
             android:exported="false" />
         <activity
             android:name=".ui.staff.LetterAddActivity"
             android:exported="false"
-            android:parentActivityName="com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity"></activity>
+            android:parentActivityName=".ui.staff.home.StaffHomeActivity" />
         <activity
-            android:name="com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity"
+            android:name=".ui.manager.home.ManagerHomeActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name="com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity"
+            android:name=".ui.staff.home.StaffHomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SignupCompanyActivity"

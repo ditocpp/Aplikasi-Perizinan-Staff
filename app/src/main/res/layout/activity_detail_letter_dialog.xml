@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.staff.LetterAddActivity">
+    tools:context=".ui.staff.home.DetailLetterDialog">
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp">
@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/type_leave"
+            android:padding="20dp"
             android:inputType="none"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -25,12 +26,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp">
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edt_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             android:hint="@string/description"
-            android:inputType="textCapSentences"
+            android:inputType="none"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,17 +68,12 @@
 
     <Button
         android:id="@+id/btn_showDateRangePicker"
-        style="@style/Base.Widget.AppCompat.Button.Colored"
+        style="@style/ButtonGeneral"
+        android:backgroundTint="#C81B1B"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/date" />
+        android:text="@string/delete" />
 
-    <Button
-        android:id="@+id/btn_submit"
-        style="@style/Base.Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/submit" />
 
 
 </LinearLayout>
