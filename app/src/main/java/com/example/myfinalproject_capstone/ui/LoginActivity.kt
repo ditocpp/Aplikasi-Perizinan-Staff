@@ -16,12 +16,20 @@ import com.example.myfinalproject_capstone.datastore.SettingPreferences
 import com.example.myfinalproject_capstone.datastore.ViewModelFactory
 import com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener {
+class
+LoginActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var binding: ActivityLoginBinding
+    private var binding: ActivityLoginBinding? = null
     private var database: DatabaseReference? = null
+    private lateinit var auth: FirebaseAuth
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "dataUser")
 
     companion object {
@@ -33,25 +41,27 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding!!.root)
 
         database = FirebaseDatabase.getInstance("https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Users")
 
-        binding.btnLogin.setOnClickListener(this)
+        binding!!.btnLogin.setOnClickListener(this)
+
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onClick(v: View?) {
-
-        val msg_email: String = binding.etEmail.text.toString().trim()
-        val msg_password: String = binding.etPassword.text.toString().trim()
+        login()
+        val msg_email: String = binding?.etEmail?.text.toString().trim()
+        val msg_password: String = binding?.etPassword?.text.toString().trim()
 
         if (msg_email.isEmpty()) {
-            binding.etEmail.error = FIELD_REQUIRED
+            binding?.etEmail?.error = FIELD_REQUIRED
             return
         }
         if (msg_password.isEmpty()){
-            binding.etPassword.error = FIELD_REQUIRED
+            binding?.etPassword?.error = FIELD_REQUIRED
             return
         }
 
@@ -62,7 +72,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
             }
         } else {
-            binding.etEmail.error = FIELD_IS_NOT_VALID
+            binding?.etEmail?.error = FIELD_IS_NOT_VALID
             return
         }
 
@@ -111,6 +121,33 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         mainViewModel.saveUserSetting(id, email, password, codeCompany, position)
+    }
+
+    private fun login() {
+        val email : String = binding?.etEmail?.text.toString().trim().lowercase()
+        val password : String = binding?.etPassword?.text.toString().trim()
+        if(email.isNotEmpty() && password.isNotEmpty()) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    auth.signInWithEmailAndPassword(email, password).await()
+                    withContext(Dispatchers.Main) {
+                        checkLoggedInState()
+                    }
+                } catch(e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "Error: User Not Found!", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun checkLoggedInState() {
+        if(auth.currentUser == null) {
+            Toast.makeText(applicationContext, "You Are Not Logged In", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(applicationContext, "You Are Logged In", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onDestroy() {

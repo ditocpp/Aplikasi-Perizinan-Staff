@@ -8,13 +8,20 @@ import android.widget.Toast
 import com.example.myfinalproject_capstone.entity.DataUsers
 import com.example.myfinalproject_capstone.databinding.ActivitySignupCompanyBinding
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
 
     private var binding: ActivitySignupCompanyBinding? = null
     private var database: DatabaseReference? = null
+    private lateinit var auth: FirebaseAuth
 
     companion object {
         private const val FIELD_IS_NOT_VALID = "Email tidak valid"
@@ -31,9 +38,12 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
             .getReference("Users")
 
         binding!!.btnSignUp.setOnClickListener(this)
+
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onClick(v: View?) {
+        register()
         val msg_email: String = binding?.etEmail?.text.toString()
         val msg_password: String = binding?.etPassword?.text.toString()
 
@@ -85,6 +95,33 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
             }
         } catch (ex: Exception) {
             Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun register() {
+        val email : String = binding?.etEmail?.text.toString().trim().lowercase()
+        val password : String = binding?.etPassword?.text.toString().trim()
+        if(email.isNotEmpty() && password.isNotEmpty()) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    auth.createUserWithEmailAndPassword(email, password).await()
+                    withContext(Dispatchers.Main) {
+                        checkLoggedInState()
+                    }
+                } catch(e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "error", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun checkLoggedInState() {
+        if(auth.currentUser == null) {
+            Toast.makeText(applicationContext, "You Are Not Logged In", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(applicationContext, "You Are Logged In", Toast.LENGTH_LONG).show()
         }
     }
 

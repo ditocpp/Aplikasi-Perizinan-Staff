@@ -8,13 +8,20 @@ import android.widget.Toast
 import com.example.myfinalproject_capstone.entity.DataUsers
 import com.example.myfinalproject_capstone.databinding.ActivitySignupBinding
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class SignupActivity : AppCompatActivity(), View.OnClickListener {
 
     private var binding: ActivitySignupBinding? = null
     private var database: DatabaseReference? = null
+    private lateinit var auth: FirebaseAuth
 
     companion object {
         private const val FIELD_IS_NOT_VALID = "Email tidak valid"
@@ -28,9 +35,12 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding!!.root)
 
         binding!!.btnSignUp.setOnClickListener(this)
+
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onClick(v: View?) {
+        register()
         val msg_email: String = binding?.etEmail?.text.toString().trim()
         val msg_password: String = binding?.etPassword?.text.toString().trim()
         val msg_code: String = binding?.etCode?.text.toString().trim()
@@ -78,7 +88,7 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
                     val moveIntent = Intent(this@SignupActivity, StaffHomeActivity::class.java)
                     startActivity(moveIntent)
                 }.addOnFailureListener {
-                    Toast.makeText(applicationContext, "Failed Saved", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Failed to Save", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(applicationContext, "Failed in idUsers", Toast.LENGTH_SHORT).show()
@@ -88,10 +98,36 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun register() {
+        val email : String = binding?.etEmail?.text.toString().trim().lowercase()
+        val password : String = binding?.etPassword?.text.toString().trim()
+        if(email.isNotEmpty() && password.isNotEmpty()) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    auth.createUserWithEmailAndPassword(email, password).await()
+                    withContext(Dispatchers.Main) {
+                        //checkLoggedInState()
+                    }
+                } catch(e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "error", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    /*private fun checkLoggedInState() {
+        if(auth.currentUser == null) {
+            TODO("logged in")
+        } else {
+            TODO("not logged in")
+        }
+    }*/
+
     override fun onDestroy() {
         super.onDestroy()
         binding = null
         database = null
     }
 }
-

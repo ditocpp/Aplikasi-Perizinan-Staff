@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_account.xml" value="0.264" />
         <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_first.xml" value="0.264" />
         <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_letter_add.xml" value="0.1721014492753623" />
         <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_login.xml" value="0.1721014492753623" />
@@ -10,7 +11,7 @@
         <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_signup.xml" value="0.21875" />
         <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_signup_company.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_splash_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_staff_home.xml" value="0.1" />
+        <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_staff_home.xml" value="0.264" />
         <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/item_drop_down.xml" value="0.536" />
         <entry key="..\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/item_letter.xml" value="0.264" />
         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.27037037037037037" />

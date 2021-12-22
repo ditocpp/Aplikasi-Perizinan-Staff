@@ -46,4 +46,5 @@
     <string name="finish_date">Finish Date</string>
     <string name="edit">EDIT</string>
     <string name="close">close</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
