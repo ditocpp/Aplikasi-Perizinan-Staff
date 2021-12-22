@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -28,8 +29,9 @@ class AccountActivity : AppCompatActivity() {
 
         binding!!.btnSignOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
+            Toast.makeText(applicationContext, "Logging Out...", Toast.LENGTH_LONG).show()
             val intent = Intent(this@AccountActivity, FirstActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears previous activity stack, prevents back to last activity
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
             startActivity(intent)
             finish()
         }
