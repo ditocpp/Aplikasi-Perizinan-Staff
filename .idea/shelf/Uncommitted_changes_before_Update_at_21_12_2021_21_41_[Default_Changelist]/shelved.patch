@@ -1,0 +1,304 @@
+Index: app/src/main/java/com/example/myfinalproject_capstone/ui/staff/home/DetailLetterViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/home/DetailLetterViewModel.kt b/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/home/DetailLetterViewModel.kt
+new file mode 100644
+--- /dev/null	(date 1640097553933)
++++ b/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/home/DetailLetterViewModel.kt	(date 1640097553933)
+@@ -0,0 +1,9 @@
++package com.example.myfinalproject_capstone.ui.staff.home
++
++import androidx.lifecycle.ViewModel
++
++class DetailLetterViewModel: ViewModel(){
++
++
++
++}
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">IzinBoss</string>\r\n    <string name=\"btn_login\">Login</string>\r\n    <string name=\"btn_create_new_team\">Create New Team</string>\r\n    <string name=\"btn_join_existing_team\">Join Existing Team</string>\r\n    <string name=\"tv_email\">Email</string>\r\n    <string name=\"tv_password\">Password</string>\r\n    <string name=\"tv_code\">Code</string>\r\n    <!--item_letter-->\r\n    <string name=\"permit\">Surat Izin</string>\r\n    <string name=\"description\">Deskripsi</string>\r\n    <string name=\"submit\">Submit</string>\r\n    <string name=\"delete\">Hapus</string>\r\n    <string name=\"date\">Date</string>\r\n    <string name=\"name_manager\">Mico Winaryo Dwi Putranto</string>\r\n    <string name=\"name_staff\">Staff Name</string>\r\n    <string name=\"title_activity_main\">MainActivity</string>\r\n    <!-- Strings used for fragments for navigation -->\r\n    <string name=\"first_fragment_label\">First Fragment</string>\r\n    <string name=\"second_fragment_label\">Second Fragment</string>\r\n    <string name=\"next\">Next</string>\r\n    <string name=\"previous\">Previous</string>\r\n    <string name=\"type_leave\">Tipe Surat Izin</string>\r\n    <string name=\"waktu_izin\">Waktu Izin</string>\r\n    <string name=\"topbar_account\">Account</string>\r\n    <string name=\"status\">Pending / Accepted / Rejected</string>\r\n    <string name=\"tv_sampai_dengan\">s/d</string>\r\n    <!--Drop Down Item-->\r\n    <string-array name=\"item_dropdown\">\r\n        <item>Surat Izin</item>\r\n        <item>Surat Sakit</item>\r\n        <item>Surat Cuti</item>\r\n    </string-array>\r\n    <string name=\"approved\">Approved</string>\r\n    <string name=\"rejected\">Rejected</string>\r\n    <string name=\"pending\">Pending</string>\r\n    <string name=\"acc_position\">Position</string>\r\n    <string name=\"acc_password\">Password</string>\r\n    <string name=\"acc_email\">Email</string>\r\n    <string name=\"acc_nama\">Nama</string>\r\n    <string name=\"msg_name\">Mico Winaryo Dwi Putranto</string>\r\n    <string name=\"msg_email\">mikowinaryo11@gmail.com</string>\r\n    <string name=\"mico_winaryo_dwi_putranto\">Mico Winaryo Dwi Putranto</string>\r\n    <string name=\"msg_staff\">staff</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 727d8833454a10a36417d99ec75941b00c9d8033)
++++ b/app/src/main/res/values/strings.xml	(date 1640096658606)
+@@ -42,4 +42,6 @@
+     <string name="msg_email">mikowinaryo11@gmail.com</string>
+     <string name="mico_winaryo_dwi_putranto">Mico Winaryo Dwi Putranto</string>
+     <string name="msg_staff">staff</string>
++    <string name="start_date">Start Date</string>
++    <string name="finish_date">Finish Date</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_detail_letter_dialog.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_detail_letter_dialog.xml b/app/src/main/res/layout/activity_detail_letter_dialog.xml
+new file mode 100644
+--- /dev/null	(date 1640097185744)
++++ b/app/src/main/res/layout/activity_detail_letter_dialog.xml	(date 1640097185744)
+@@ -0,0 +1,79 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical"
++    android:padding="16dp"
++    tools:context=".ui.staff.home.DetailLetterDialog">
++
++    <com.google.android.material.textfield.TextInputLayout
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginBottom="16dp">
++        <AutoCompleteTextView
++            android:id="@+id/edtTypeLeave"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="@string/type_leave"
++            android:padding="20dp"
++            android:inputType="none"
++            android:maxLines="1" />
++    </com.google.android.material.textfield.TextInputLayout>
++    <com.google.android.material.textfield.TextInputLayout
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginBottom="16dp">
++        <AutoCompleteTextView
++            android:id="@+id/edt_description"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:padding="20dp"
++            android:hint="@string/description"
++            android:inputType="none"
++            android:maxLines="1" />
++    </com.google.android.material.textfield.TextInputLayout>
++
++    <com.google.android.material.textfield.TextInputLayout
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginBottom="16dp">
++        <AutoCompleteTextView
++            android:id="@+id/edt_start_datePicker"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:padding="20dp"
++            android:hint="@string/start_date"
++            android:inputType="none"
++            android:maxLines="1" />
++    </com.google.android.material.textfield.TextInputLayout>
++
++    <com.google.android.material.textfield.TextInputLayout
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginBottom="16dp">
++        <AutoCompleteTextView
++            android:id="@+id/edt_end_datePicker"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="@string/finish_date"
++            android:padding="20dp"
++            android:inputType="none"
++            android:maxLines="1" />
++    </com.google.android.material.textfield.TextInputLayout>
++
++    <Button
++        android:id="@+id/btn_showDateRangePicker"
++        style="@style/ButtonGeneral"
++        android:backgroundTint="#C81B1B"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="@string/delete" />
++
++
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_letter_add.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\"\r\n    android:padding=\"16dp\"\r\n    tools:context=\".ui.staff.LetterAddActivity\">\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginBottom=\"16dp\">\r\n        <AutoCompleteTextView\r\n            android:id=\"@+id/edtTypeLeave\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"@string/type_leave\"\r\n            android:inputType=\"none\"\r\n            android:maxLines=\"1\" />\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginBottom=\"16dp\">\r\n        <EditText\r\n            android:id=\"@+id/edt_description\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"@string/description\"\r\n            android:inputType=\"textCapSentences\"\r\n            android:maxLines=\"1\" />\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginBottom=\"16dp\">\r\n        <TextView\r\n            android:id=\"@+id/edt_start_datePicker\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:padding=\"20dp\"\r\n            android:hint=\"Start Date\"\r\n            android:inputType=\"none\"\r\n            android:maxLines=\"1\" />\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginBottom=\"16dp\">\r\n        <TextView\r\n            android:id=\"@+id/edt_end_datePicker\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"Finish Date\"\r\n            android:padding=\"20dp\"\r\n            android:inputType=\"none\"\r\n            android:maxLines=\"1\" />\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    <Button\r\n        android:id=\"@+id/btn_showDateRangePicker\"\r\n        style=\"@style/Base.Widget.AppCompat.Button.Colored\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"@string/date\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btn_submit\"\r\n        style=\"@style/Base.Widget.AppCompat.Button.Colored\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"@string/submit\" />\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_letter_add.xml b/app/src/main/res/layout/activity_letter_add.xml
+--- a/app/src/main/res/layout/activity_letter_add.xml	(revision 727d8833454a10a36417d99ec75941b00c9d8033)
++++ b/app/src/main/res/layout/activity_letter_add.xml	(date 1640096705082)
+@@ -39,12 +39,12 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="16dp">
+-        <TextView
++        <AutoCompleteTextView
+             android:id="@+id/edt_start_datePicker"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:padding="20dp"
+-            android:hint="Start Date"
++            android:hint="@string/start_date"
+             android:inputType="none"
+             android:maxLines="1" />
+     </com.google.android.material.textfield.TextInputLayout>
+@@ -54,11 +54,11 @@
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="16dp">
+-        <TextView
++        <AutoCompleteTextView
+             android:id="@+id/edt_end_datePicker"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+-            android:hint="Finish Date"
++            android:hint="@string/finish_date"
+             android:padding="20dp"
+             android:inputType="none"
+             android:maxLines="1" />
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.example.myfinalproject_capstone\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.MyFinalProject_Capstone\">\r\n        <activity\r\n            android:name=\".ui.AccountActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.staff.LetterAddActivity\"\r\n            android:exported=\"false\"\r\n            android:parentActivityName=\"com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity\"></activity>\r\n        <activity\r\n            android:name=\"com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity\"\r\n            android:exported=\"false\"\r\n            android:label=\"@string/title_activity_main\" />\r\n        <activity\r\n            android:name=\"com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.SignupCompanyActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.FirstActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.SplashScreen\"\r\n            android:exported=\"true\"\r\n            android:noHistory=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".ui.SignupActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".ui.LoginActivity\"\r\n            android:exported=\"true\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 727d8833454a10a36417d99ec75941b00c9d8033)
++++ b/app/src/main/AndroidManifest.xml	(date 1640010344490)
+@@ -12,18 +12,21 @@
+         android:supportsRtl="true"
+         android:theme="@style/Theme.MyFinalProject_Capstone">
+         <activity
++            android:name=".ui.staff.home.DetailLetterDialog"
++            android:exported="false" />
++        <activity
+             android:name=".ui.AccountActivity"
+             android:exported="false" />
+         <activity
+             android:name=".ui.staff.LetterAddActivity"
+             android:exported="false"
+-            android:parentActivityName="com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity"></activity>
++            android:parentActivityName=".ui.staff.home.StaffHomeActivity" />
+         <activity
+-            android:name="com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity"
++            android:name=".ui.manager.home.ManagerHomeActivity"
+             android:exported="false"
+             android:label="@string/title_activity_main" />
+         <activity
+-            android:name="com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity"
++            android:name=".ui.staff.home.StaffHomeActivity"
+             android:exported="false" />
+         <activity
+             android:name=".ui.SignupCompanyActivity"
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_first.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_letter_add.xml\" value=\"0.1721014492753623\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_login.xml\" value=\"0.1721014492753623\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_manager_home.xml\" value=\"0.4\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_signup.xml\" value=\"0.21875\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_signup_company.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_splash_screen.xml\" value=\"0.25416666666666665\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/activity_staff_home.xml\" value=\"0.1\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/item_drop_down.xml\" value=\"0.536\" />\r\n        <entry key=\"..\\:/Users/dito9/Desktop/Dicoding-SIB/Capstone/IzinBoss/app/src/main/res/layout/item_letter.xml\" value=\"0.264\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.27037037037037037\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/ic_baseline_access_time_24.xml\" value=\"0.27037037037037037\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/ic_baseline_add_24.xml\" value=\"0.27037037037037037\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/ic_baseline_add_circle_24.xml\" value=\"0.27037037037037037\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml\" value=\"0.27037037037037037\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/ic_baseline_help_24.xml\" value=\"0.27037037037037037\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/ic_dashboard_black_24dp.xml\" value=\"0.27037037037037037\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/rounded_edittext.xml\" value=\"0.27037037037037037\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_account.xml\" value=\"0.4\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_first.xml\" value=\"0.2368659420289855\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_letter_add.xml\" value=\"0.2368659420289855\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_login.xml\" value=\"0.2368659420289855\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_manager_home.xml\" value=\"0.2368659420289855\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_signup.xml\" value=\"0.2368659420289855\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_signup_company.xml\" value=\"0.2368659420289855\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_staff_home.xml\" value=\"0.2368659420289855\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/dialog_help.xml\" value=\"0.4\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/item_letter.xml\" value=\"0.4949698189134809\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/item_letter_staff.xml\" value=\"0.4\" />\r\n        <entry key=\"..\\:/Users/msi/Documents/IzinBoss/app/src/main/res/menu/topbar_menu.xml\" value=\"0.22777777777777777\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 727d8833454a10a36417d99ec75941b00c9d8033)
++++ b/.idea/misc.xml	(date 1640010384209)
+@@ -22,6 +22,7 @@
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.27037037037037037" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/drawable/rounded_edittext.xml" value="0.27037037037037037" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_account.xml" value="0.4" />
++        <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_detail_letter_dialog.xml" value="0.2028985507246377" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_first.xml" value="0.2368659420289855" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_letter_add.xml" value="0.2368659420289855" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_login.xml" value="0.2368659420289855" />
+@@ -30,6 +31,7 @@
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_signup_company.xml" value="0.2368659420289855" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/activity_staff_home.xml" value="0.2368659420289855" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/dialog_help.xml" value="0.4" />
++        <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/item_drop_down.xml" value="0.213768115942029" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/item_letter.xml" value="0.4949698189134809" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/layout/item_letter_staff.xml" value="0.4" />
+         <entry key="..\:/Users/msi/Documents/IzinBoss/app/src/main/res/menu/topbar_menu.xml" value="0.22777777777777777" />
+Index: app/src/main/java/com/example/myfinalproject_capstone/ui/staff/LetterAddActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfinalproject_capstone.ui.staff\r\n\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.widget.ArrayAdapter\r\nimport android.widget.Toast\r\nimport androidx.datastore.core.DataStore\r\nimport androidx.datastore.preferences.core.Preferences\r\nimport androidx.datastore.preferences.preferencesDataStore\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport com.example.myfinalproject_capstone.R\r\nimport com.example.myfinalproject_capstone.databinding.ActivityLetterAddBinding\r\nimport com.example.myfinalproject_capstone.datastore.MainViewModel\r\nimport com.example.myfinalproject_capstone.datastore.SettingPreferences\r\nimport com.example.myfinalproject_capstone.datastore.ViewModelFactory\r\nimport com.example.myfinalproject_capstone.entity.Letter\r\nimport com.example.myfinalproject_capstone.ui.AccountActivity\r\nimport com.example.myfinalproject_capstone.ui.LoginActivity\r\nimport com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity\r\nimport com.google.android.material.datepicker.MaterialDatePicker\r\nimport com.google.firebase.database.DatabaseReference\r\nimport com.google.firebase.database.FirebaseDatabase\r\nimport java.lang.Exception\r\nimport java.text.SimpleDateFormat\r\nimport java.util.*\r\n\r\nclass LetterAddActivity : AppCompatActivity() {\r\n\r\n    private lateinit var binding: ActivityLetterAddBinding\r\n    private var database: DatabaseReference? = null\r\n    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = \"dataUser\")\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n\r\n        binding = ActivityLetterAddBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        val typeLeaves = resources.getStringArray(R.array.item_dropdown)\r\n        val arrayAdapter = ArrayAdapter(this, R.layout.item_drop_down, typeLeaves)\r\n        binding.edtTypeLeave.setAdapter(arrayAdapter)\r\n\r\n        supportActionBar?.setDisplayHomeAsUpEnabled(true)\r\n\r\n        binding.btnShowDateRangePicker.setOnClickListener{ showDateRangePicker() }\r\n        binding.btnSubmit.setOnClickListener{ addDataToDB() }\r\n    }\r\n\r\n    private fun showDateRangePicker() {\r\n        val dateRangePicker = MaterialDatePicker.Builder\r\n            .dateRangePicker()\r\n            .setTitleText(\"Select date\")\r\n            .build()\r\n        dateRangePicker.show(\r\n            supportFragmentManager,\r\n            \"date_range_picker\"\r\n        )\r\n        dateRangePicker.addOnPositiveButtonClickListener { datePicked ->\r\n            val startDate = datePicked.first\r\n            val endDate = datePicked.second\r\n\r\n            if (startDate != null && endDate != null) {\r\n                binding.edtStartDatePicker.text = convertLongToDate(startDate)\r\n                binding.edtEndDatePicker.text = convertLongToDate(endDate)\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun convertLongToDate(time: Long): String? {\r\n        val date = Date(time)\r\n        val format = SimpleDateFormat (\r\n            \"dd-MM-yyyy\",\r\n            Locale.getDefault()\r\n        )\r\n        return format.format(date)\r\n    }\r\n\r\n    private fun addDataToDB() {\r\n\r\n        database = FirebaseDatabase.getInstance(\"https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/\")\r\n            .getReference(\"Letters\")\r\n\r\n        if(!isEmptyField()) {\r\n            val letterID = database!!.push().key\r\n            val inputDate = getCurrentDate()\r\n            val title = binding.edtTypeLeave.text.toString().trim()\r\n            val description = binding.edtDescription.text.toString().trim()\r\n            val staffID = getUserID()\r\n            val companyID = getCompanyID()\r\n            val durationStart = binding.edtStartDatePicker.text.toString().trim()\r\n            val durationFinish = binding.edtEndDatePicker.text.toString().trim()\r\n            val status = \"3\"\r\n\r\n            val letter = Letter(letterID, inputDate, title, description, staffID, companyID, durationStart, durationFinish, status)\r\n            try {\r\n                if (letterID != null) {\r\n                    database!!.child(letterID).setValue(letter).addOnCompleteListener {\r\n                        val intent = Intent(this@LetterAddActivity, StaffHomeActivity::class.java)\r\n                        startActivity(intent)\r\n                        Toast.makeText(applicationContext, \"Berhasil Disimpan\", Toast.LENGTH_SHORT).show()\r\n                    }.addOnFailureListener {\r\n                        Toast.makeText(applicationContext, \"Failed Saved\", Toast.LENGTH_SHORT).show()\r\n                    }\r\n                } else {\r\n                    Toast.makeText(applicationContext, \"Failed in idUsers\", Toast.LENGTH_SHORT).show()\r\n                }\r\n            } catch (ex : Exception) {\r\n                Toast.makeText(applicationContext, \"Connection Failed\", Toast.LENGTH_SHORT).show()\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n    private fun isEmptyField(): Boolean {\r\n\r\n        var status = false\r\n\r\n        val msg_TypeLetter: String = binding.edtTypeLeave.text.toString().trim()\r\n        val msg_Description: String = binding.edtDescription.text.toString().trim()\r\n        val msg_StartDate: String = binding.edtStartDatePicker.text.toString().trim()\r\n        val msg_FinishDate: String = binding.edtEndDatePicker.text.toString().trim()\r\n\r\n        if (msg_TypeLetter.isEmpty()) {\r\n            binding.edtTypeLeave.error = FIELD_REQUIRED\r\n            status = true\r\n        } else {\r\n            binding.edtTypeLeave.error = null\r\n        }\r\n        if (msg_Description.isEmpty()){\r\n            binding.edtDescription.error = FIELD_REQUIRED\r\n            status = true\r\n        } else {\r\n            binding.edtTypeLeave.error = null\r\n        }\r\n        if (msg_StartDate.isEmpty()){\r\n            binding.edtStartDatePicker.error = FIELD_REQUIRED\r\n            status = true\r\n        } else {\r\n            binding.edtTypeLeave.error = null\r\n        }\r\n        if (msg_FinishDate.isEmpty()){\r\n            binding.edtEndDatePicker.error = FIELD_REQUIRED\r\n            status = true\r\n        } else {\r\n            binding.edtTypeLeave.error = null\r\n        }\r\n        return status\r\n    }\r\n\r\n    private fun getCompanyID(): String? {\r\n        var userCompanyId: String? = null\r\n        val pref = SettingPreferences.getInstance(dataStore)\r\n        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(\r\n            MainViewModel::class.java\r\n        )\r\n\r\n        mainViewModel.getCompanyID().observe(this,\r\n            { userCompanyID: String ->\r\n                userCompanyId = userCompanyID\r\n            }\r\n        )\r\n\r\n        return userCompanyId\r\n    }\r\n\r\n    private fun getUserID(): String? {\r\n        var userId: String? = null\r\n        val pref = SettingPreferences.getInstance(dataStore)\r\n        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(\r\n            MainViewModel::class.java\r\n        )\r\n\r\n        mainViewModel.getID().observe(this,\r\n            { userID: String ->\r\n                userId = userID\r\n            }\r\n        )\r\n\r\n        return userId\r\n    }\r\n\r\n    fun getCurrentDate():String{\r\n        val sdf = SimpleDateFormat(\r\n            \"dd-MM-yyyy\",\r\n            Locale.getDefault()\r\n        )\r\n        return sdf.format(Date())\r\n    }\r\n\r\n    companion object {\r\n        private const val FIELD_REQUIRED = \"Field tidak boleh kosong\"\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/LetterAddActivity.kt b/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/LetterAddActivity.kt
+--- a/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/LetterAddActivity.kt	(revision 727d8833454a10a36417d99ec75941b00c9d8033)
++++ b/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/LetterAddActivity.kt	(date 1640096930374)
+@@ -4,6 +4,7 @@
+ import android.content.Intent
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import android.text.Editable
+ import android.widget.ArrayAdapter
+ import android.widget.Toast
+ import androidx.datastore.core.DataStore
+@@ -16,8 +17,6 @@
+ import com.example.myfinalproject_capstone.datastore.SettingPreferences
+ import com.example.myfinalproject_capstone.datastore.ViewModelFactory
+ import com.example.myfinalproject_capstone.entity.Letter
+-import com.example.myfinalproject_capstone.ui.AccountActivity
+-import com.example.myfinalproject_capstone.ui.LoginActivity
+ import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
+ import com.google.android.material.datepicker.MaterialDatePicker
+ import com.google.firebase.database.DatabaseReference
+@@ -62,13 +61,13 @@
+             val endDate = datePicked.second
+ 
+             if (startDate != null && endDate != null) {
+-                binding.edtStartDatePicker.text = convertLongToDate(startDate)
+-                binding.edtEndDatePicker.text = convertLongToDate(endDate)
++                binding.edtStartDatePicker.setText(convertLongToDate(startDate))
++                binding.edtEndDatePicker.setText(convertLongToDate(endDate))
+             }
+         }
+     }
+ 
+-    private fun convertLongToDate(time: Long): String? {
++    private fun convertLongToDate(time: Long): String {
+         val date = Date(time)
+         val format = SimpleDateFormat (
+             "dd-MM-yyyy",
+Index: app/src/main/java/com/example/myfinalproject_capstone/ui/staff/home/DetailLetterDialog.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/home/DetailLetterDialog.kt b/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/home/DetailLetterDialog.kt
+new file mode 100644
+--- /dev/null	(date 1640097582390)
++++ b/app/src/main/java/com/example/myfinalproject_capstone/ui/staff/home/DetailLetterDialog.kt	(date 1640097582390)
+@@ -0,0 +1,21 @@
++package com.example.myfinalproject_capstone.ui.staff.home
++
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++import com.example.myfinalproject_capstone.databinding.ActivityDetailLetterDialogBinding
++
++class DetailLetterDialog : AppCompatActivity() {
++
++    private lateinit var binding: ActivityDetailLetterDialogBinding
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++
++        binding = ActivityDetailLetterDialogBinding.inflate(layoutInflater)
++        setContentView(binding.root)
++    }
++
++    companion object {
++        const val EXTRA_LETTER = "extra_letter"
++    }
++}
+\ No newline at end of file
