@@ -26,7 +26,7 @@ class SplashScreen : AppCompatActivity() {
 
     private fun checkLoggedInState() {
         if(FirebaseAuth.getInstance().currentUser == null) {
-            Toast.makeText(applicationContext, "You Are Not Logged In", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "You are not Logged In", Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(applicationContext, "Logging Out...", Toast.LENGTH_LONG).show()
             FirebaseAuth.getInstance().signOut()

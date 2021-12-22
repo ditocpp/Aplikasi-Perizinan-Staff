@@ -40,33 +40,34 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        register()
-        val msg_email: String = binding?.etEmail?.text.toString().trim()
-        val msg_password: String = binding?.etPassword?.text.toString().trim()
-        val msg_code: String = binding?.etCode?.text.toString().trim()
+        if(register()) {
+            val msg_email: String = binding?.etEmail?.text.toString().trim()
+            val msg_password: String = binding?.etPassword?.text.toString().trim()
+            val msg_code: String = binding?.etCode?.text.toString().trim()
 
-        if (msg_email.isEmpty()) {
-            binding?.etEmail?.error = FIELD_REQUIRED
-            return
-        }
-        if (msg_password.isEmpty()){
-            binding?.etPassword?.error = FIELD_REQUIRED
-            return
-        }
-        if (msg_code.isEmpty()) {
-            binding?.etCode?.error = FIELD_REQUIRED
-            return
-        }
-
-        if (isValidEmail(msg_email)) {
-            try {
-                connectDatabase(msg_email, msg_password, msg_code)
-            } catch (ex: Exception) {
-                Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
+            if (msg_email.isEmpty()) {
+                binding?.etEmail?.error = FIELD_REQUIRED
+                return
             }
-        } else {
-            binding?.etEmail?.error = FIELD_IS_NOT_VALID
-            return
+            if (msg_password.isEmpty()){
+                binding?.etPassword?.error = FIELD_REQUIRED
+                return
+            }
+            if (msg_code.isEmpty()) {
+                binding?.etCode?.error = FIELD_REQUIRED
+                return
+            }
+
+            if (isValidEmail(msg_email)) {
+                try {
+                    connectDatabase(msg_email, msg_password, msg_code)
+                } catch (ex: Exception) {
+                    Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                binding?.etEmail?.error = FIELD_IS_NOT_VALID
+                return
+            }
         }
     }
 
@@ -99,32 +100,36 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun register() {
+    private fun register(): Boolean {
         val email : String = binding?.etEmail?.text.toString().trim().lowercase()
         val password : String = binding?.etPassword?.text.toString().trim()
+        var checkEmail = false
         if(email.isNotEmpty() && password.isNotEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     auth.createUserWithEmailAndPassword(email, password).await()
                     withContext(Dispatchers.Main) {
-                        //checkLoggedInState()
+                        checkLoggedInState()
+                        true.also { checkEmail = it }
                     }
                 } catch(e: Exception) {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(applicationContext, "error", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "ERROR: Account Already Exists!", Toast.LENGTH_LONG).show()
+                        false.also { checkEmail = it }
                     }
                 }
             }
         }
+        return checkEmail
     }
 
-    /*private fun checkLoggedInState() {
+    private fun checkLoggedInState() {
         if(auth.currentUser == null) {
-            TODO("logged in")
+            Toast.makeText(applicationContext, "You Are Not Logged In", Toast.LENGTH_LONG).show()
         } else {
-            TODO("not logged in")
+            Toast.makeText(applicationContext, "You Are Logged In", Toast.LENGTH_LONG).show()
         }
-    }*/
+    }
 
     override fun onDestroy() {
         super.onDestroy()
