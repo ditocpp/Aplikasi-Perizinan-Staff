@@ -48,4 +48,5 @@
     <string name="close">close</string>
     <string name="sign_out">Sign Out</string>
     <string name="noted">Catatan</string>
+    <string name="company_code">Company Code</string>
 </resources>

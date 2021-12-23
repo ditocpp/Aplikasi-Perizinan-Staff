@@ -42,17 +42,16 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+        binding!!.btnLogin.setOnClickListener(this)
 
         database = FirebaseDatabase.getInstance("https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Users")
-
-        binding!!.btnLogin.setOnClickListener(this)
 
         auth = FirebaseAuth.getInstance()
     }
 
     override fun onClick(v: View?) {
-        login()
+        //login()
         val msg_email: String = binding?.etEmail?.text.toString().trim().lowercase()
         val msg_password: String = binding?.etPassword?.text.toString().trim()
 
@@ -98,14 +97,17 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
                             val moveIntent = Intent(this@LoginActivity, StaffHomeActivity::class.java)
                             moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                             startActivity(moveIntent)
-                            finish()
                         } else if (msg_email.equals(ds.child("email").value)
                             && msg_password.equals(ds.child("password").value)
                             && ds.child("position").value == "Manager"){
+
+                                datastore(ds.child("idUser").value as String, ds.child("email").value as String,
+                                    ds.child("password").value as String, ds.child("codeCompany").value as String,
+                                    ds.child("position").value as String)
+
                             val moveIntent = Intent(this@LoginActivity, ManagerHomeActivity::class.java)
                             moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                             startActivity(moveIntent)
-                            finish()
                         }
                     }
                 } else {
@@ -126,7 +128,7 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         mainViewModel.saveUserSetting(id, email, password, codeCompany, position)
     }
-
+/*
     private fun login() {
         val email : String = binding?.etEmail?.text.toString().trim().lowercase()
         val password : String = binding?.etPassword?.text.toString().trim()
@@ -153,7 +155,7 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(applicationContext, "You Are Logged In", Toast.LENGTH_LONG).show()
         }
     }
-
+*/
     override fun onDestroy() {
         super.onDestroy()
         database = null

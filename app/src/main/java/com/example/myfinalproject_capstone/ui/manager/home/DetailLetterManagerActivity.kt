@@ -160,20 +160,20 @@ class DetailLetterManagerActivity : AppCompatActivity(){
     }
 
     private fun getCompanyID(): String {
-        val userCompanyId = "123"
+        var userCompanyId = "123"
 
 //        Nunggu Bima Edit login dulu soalnya belum kesimpen di data store untuk data akunnya
 
-//        val pref = SettingPreferences.getInstance(dataStore)
-//        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
-//            MainViewModel::class.java
-//        )
-//
-//        mainViewModel.getCompanyID().observe(this,
-//            { userCompanyID: String ->
-//                userCompanyId = userCompanyID
-//            }
-//        )
+        val pref = SettingPreferences.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
+
+        mainViewModel.getCompanyID().observe(this,
+            { userCompanyID: String ->
+                userCompanyId = userCompanyID
+            }
+        )
 
         return userCompanyId
     }

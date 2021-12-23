@@ -1,0 +1,85 @@
+Index: app/src/main/java/com/example/myfinalproject_capstone/ui/AccountActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfinalproject_capstone.ui\r\n\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.widget.Toast\r\nimport androidx.datastore.core.DataStore\r\nimport androidx.datastore.preferences.core.Preferences\r\nimport androidx.datastore.preferences.preferencesDataStore\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport com.example.myfinalproject_capstone.databinding.ActivityAccountBinding\r\nimport com.example.myfinalproject_capstone.databinding.ActivityFirstBinding\r\nimport com.example.myfinalproject_capstone.datastore.MainViewModel\r\nimport com.example.myfinalproject_capstone.datastore.SettingPreferences\r\nimport com.example.myfinalproject_capstone.datastore.ViewModelFactory\r\nimport com.google.firebase.auth.FirebaseAuth\r\n\r\nclass AccountActivity : AppCompatActivity() {\r\n\r\n    private var binding: ActivityAccountBinding? = null\r\n    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = \"dataUser\")\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n\r\n        binding = ActivityAccountBinding.inflate(layoutInflater)\r\n        setContentView(binding!!.root)\r\n\r\n        binding!!.btnSignOut.setOnClickListener {\r\n            FirebaseAuth.getInstance().signOut()\r\n            Toast.makeText(applicationContext, \"Logging Out...\", Toast.LENGTH_SHORT).show()\r\n            val intent = Intent(this@AccountActivity, FirstActivity::class.java)\r\n            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n    }\r\n\r\n\r\n    private fun getUser() {\r\n        // Mendapatkan semua data dari data store\r\n        var userId: String? = null\r\n        val pref = SettingPreferences.getInstance(dataStore)\r\n        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(\r\n            MainViewModel::class.java\r\n        )\r\n\r\n        mainViewModel.getID().observe(this,\r\n            { userID: String ->\r\n                userId = userID\r\n            }\r\n        )\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myfinalproject_capstone/ui/AccountActivity.kt b/app/src/main/java/com/example/myfinalproject_capstone/ui/AccountActivity.kt
+--- a/app/src/main/java/com/example/myfinalproject_capstone/ui/AccountActivity.kt	(revision 99561ce28108eeac9203bf107161f0e1fed5e3a0)
++++ b/app/src/main/java/com/example/myfinalproject_capstone/ui/AccountActivity.kt	(date 1640250838908)
+@@ -37,7 +37,6 @@
+         }
+     }
+ 
+-
+     private fun getUser() {
+         // Mendapatkan semua data dari data store
+         var userId: String? = null
+Index: app/src/main/java/com/example/myfinalproject_capstone/adapter/LetterAdapter.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/myfinalproject_capstone/adapter/LetterAdapter.kt b/app/src/main/java/com/example/myfinalproject_capstone/adapter/LetterAdapter.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/myfinalproject_capstone/adapter/LetterAdapter.kt	(revision 99561ce28108eeac9203bf107161f0e1fed5e3a0)
++++ /dev/null	(revision 99561ce28108eeac9203bf107161f0e1fed5e3a0)
+@@ -1,59 +0,0 @@
+-package com.example.myfinalproject_capstone.adapter
+-
+-import android.view.LayoutInflater
+-import android.view.ViewGroup
+-import androidx.recyclerview.widget.RecyclerView
+-import com.example.myfinalproject_capstone.R
+-import com.example.myfinalproject_capstone.databinding.ItemLetterBinding
+-import com.example.myfinalproject_capstone.entity.Letter
+-import kotlin.collections.ArrayList
+-
+-class LetterAdapter(private val listSurat: ArrayList<Letter>) : RecyclerView.Adapter<LetterAdapter.ListViewHolder>() {
+-
+-    private lateinit var onItemClickCallback: OnItemClickCallback
+-
+-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+-        this.onItemClickCallback = onItemClickCallback
+-    }
+-
+-    inner class ListViewHolder(var binding: ItemLetterBinding) : RecyclerView.ViewHolder(binding.root)
+-
+-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
+-        val binding = ItemLetterBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+-        return ListViewHolder(binding)
+-    }
+-
+-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+-        val (letterID, inputDate, title, description, staffID, companyID, durationStart, durationFinish, status) = listSurat[position]
+-
+-        holder.binding.apply {
+-            tvItemDate.text = inputDate.toString()
+-            tvPermit.text = title
+-            tvItemDescription.text = description
+-//            tvNameStaff.text = staffName
+-            tvPermitDurationStart.text = durationStart.toString()
+-            tvPermitDurationFinish.text = durationFinish.toString()
+-            when {
+-                status.equals("0") -> {
+-                    tvPermitStatus.setText(R.string.approved)
+-                    imgStatus.setImageResource(R.drawable.ic_baseline_check_24)
+-                }
+-                status.equals("1") -> {
+-                    tvPermitStatus.setText(R.string.rejected)
+-                    imgStatus.setImageResource(R.drawable.ic_baseline_close_24)
+-                }
+-                else -> {
+-                    tvPermitStatus.setText(R.string.pending)
+-                    imgStatus.setImageResource(R.drawable.ic_baseline_access_time_24)
+-                }
+-            }
+-            TODO("implement callback function")
+-        }
+-    }
+-
+-    override fun getItemCount(): Int = listSurat.size
+-
+-    interface OnItemClickCallback {
+-        fun OnItemClicked(data: Letter)
+-    }
+-}
+\ No newline at end of file

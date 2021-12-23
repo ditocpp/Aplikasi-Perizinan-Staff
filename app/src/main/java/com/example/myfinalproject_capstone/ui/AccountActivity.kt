@@ -27,6 +27,8 @@ class AccountActivity : AppCompatActivity() {
         binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
+        getUser()
+
         binding!!.btnSignOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             Toast.makeText(applicationContext, "Logging Out...", Toast.LENGTH_SHORT).show()
@@ -37,10 +39,10 @@ class AccountActivity : AppCompatActivity() {
         }
     }
 
-
     private fun getUser() {
         // Mendapatkan semua data dari data store
         var userId: String? = null
+        var userCompanyId: String? = null
         val pref = SettingPreferences.getInstance(dataStore)
         val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
             MainViewModel::class.java
@@ -51,5 +53,14 @@ class AccountActivity : AppCompatActivity() {
                 userId = userID
             }
         )
+
+        mainViewModel.getCompanyID().observe(this,
+            { userCompanyID: String ->
+                userCompanyId = userCompanyID
+            }
+        )
+
+        binding?.tvCompanyCode?.text = userCompanyId
+
     }
 }

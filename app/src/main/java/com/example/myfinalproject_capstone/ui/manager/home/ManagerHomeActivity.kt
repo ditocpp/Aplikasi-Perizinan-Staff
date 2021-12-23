@@ -18,6 +18,9 @@ import com.example.myfinalproject_capstone.ui.AccountActivity
 import com.example.myfinalproject_capstone.R
 import com.example.myfinalproject_capstone.adapter.ListLetterManagerAdapter
 import com.example.myfinalproject_capstone.databinding.ActivityManagerHomeBinding
+import com.example.myfinalproject_capstone.datastore.MainViewModel
+import com.example.myfinalproject_capstone.datastore.SettingPreferences
+import com.example.myfinalproject_capstone.datastore.ViewModelFactory
 import com.example.myfinalproject_capstone.entity.Letter
 import com.example.myfinalproject_capstone.ui.manager.MyDialogHelp
 import com.google.firebase.database.*
@@ -61,20 +64,18 @@ class ManagerHomeActivity : AppCompatActivity() {
     }
 
     private fun getCompanyID(): String {
-        val userCompanyId = "123"
+        var userCompanyId = "123"
 
-//        Nunggu Bima Edit login dulu soalnya belum kesimpen di data store untuk data akunnya
+        val pref = SettingPreferences.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
 
-//        val pref = SettingPreferences.getInstance(dataStore)
-//        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
-//            MainViewModel::class.java
-//        )
-//
-//        mainViewModel.getCompanyID().observe(this,
-//            { userCompanyID: String ->
-//                userCompanyId = userCompanyID
-//            }
-//        )
+        mainViewModel.getCompanyID().observe(this,
+            { userCompanyID: String ->
+                userCompanyId = userCompanyID
+            }
+        )
 
         return userCompanyId
     }

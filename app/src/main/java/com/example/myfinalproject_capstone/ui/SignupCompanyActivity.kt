@@ -1,19 +1,27 @@
 package com.example.myfinalproject_capstone.ui
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import com.example.myfinalproject_capstone.entity.DataUsers
 import com.example.myfinalproject_capstone.databinding.ActivitySignupCompanyBinding
+import com.example.myfinalproject_capstone.datastore.MainViewModel
+import com.example.myfinalproject_capstone.datastore.SettingPreferences
+import com.example.myfinalproject_capstone.datastore.ViewModelFactory
+import com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,6 +33,7 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
     private var binding: ActivitySignupCompanyBinding? = null
     private var database: DatabaseReference? = null
     private lateinit var auth: FirebaseAuth
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "dataUser")
 
     companion object {
         private const val FIELD_IS_NOT_VALID = "Email tidak valid"
@@ -46,9 +55,8 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if(register())
-        {
-            val msg_email: String = binding?.etEmail?.text.toString().trim().lowercase()
+        //if(register()) {
+            val msg_email: String = binding?.etEmail?.text.toString().trim()
             val msg_password: String = binding?.etPassword?.text.toString().trim()
 
             if (msg_email.isEmpty()) {
@@ -57,6 +65,10 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
             }
             if (msg_password.isEmpty()){
                 binding?.etPassword?.error = FIELD_REQUIRED
+                return
+            }
+            if (msg_password.length < 6){
+                binding?.etPassword?.error = FIELD_WEAK_PASS
                 return
             }
 
@@ -70,7 +82,7 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
                 binding?.etEmail?.error = FIELD_IS_NOT_VALID
                 return
             }
-        }
+        //}
     }
 
     private fun isValidEmail(email: CharSequence): Boolean {
@@ -84,15 +96,35 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
 
             val idUsers = database!!.push().key
             val position = "Manager"
-            val msg_code = "00001"
+            var randomNumber = (1..99999).random()
+            var msg_code = String.format("%05d", randomNumber)
+
+            database!!.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.forEach{
+                        if(snapshot.exists()) {
+                            for(ds in snapshot.children) {
+                                while (msg_code.equals(ds.child("codeCompany").value)) {
+                                    randomNumber = (1..99999).random()
+                                    msg_code = String . format ("%05d", randomNumber)
+                                }
+                            }
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(applicationContext, "Database Error!", Toast.LENGTH_LONG).show()
+                }
+            })
 
             val User = DataUsers(idUsers, msg_email, msg_password, msg_code, position)
             if (idUsers != null) {
                 database!!.child(idUsers).setValue(User).addOnCompleteListener {
-                    val moveIntent = Intent(this@SignupCompanyActivity, StaffHomeActivity::class.java)
+                    datastore(idUsers, msg_email, msg_password, msg_code, position)
+                    val moveIntent = Intent(this@SignupCompanyActivity, ManagerHomeActivity::class.java)
                     moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                     startActivity(moveIntent)
-                    finish()
                 }.addOnFailureListener {
                     Toast.makeText(applicationContext, "Failed Saved", Toast.LENGTH_SHORT).show()
                 }
@@ -104,6 +136,16 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun datastore(id: String, email: String, password: String, codeCompany: String, position: String) {
+        val pref = SettingPreferences.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
+
+        mainViewModel.saveUserSetting(id, email, password, codeCompany, position)
+    }
+
+/*
     private fun register(): Boolean {
         val email : String = binding?.etEmail?.text.toString().trim().lowercase()
         val password : String = binding?.etPassword?.text.toString().trim()
@@ -112,6 +154,7 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     auth.createUserWithEmailAndPassword(email, password).await()
+                    connectDatabase(email, password)
                     withContext(Dispatchers.Main) {
                         checkLoggedInState()
                         true.also { checkEmail = it }
@@ -147,7 +190,7 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(applicationContext, "You Are Logged In", Toast.LENGTH_LONG).show()
         }
     }
-
+*/
     override fun onDestroy() {
         super.onDestroy()
         binding = null
