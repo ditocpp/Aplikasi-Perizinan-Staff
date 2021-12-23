@@ -9,6 +9,9 @@ import com.example.myfinalproject_capstone.entity.DataUsers
 import com.example.myfinalproject_capstone.databinding.ActivitySignupBinding
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -112,10 +115,23 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
                         checkLoggedInState()
                         true.also { checkEmail = it }
                     }
-                } catch(e: Exception) {
+                } catch(e: FirebaseAuthWeakPasswordException) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "ERROR: Weak Password!", Toast.LENGTH_LONG).show()
+                        binding?.etPassword?.setError("Password must be more than 6 characters")
+                    }
+                } catch(e: FirebaseAuthInvalidCredentialsException) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "ERROR: Invalid Email!", Toast.LENGTH_LONG).show()
+                        binding?.etEmail?.setError("Please enter a valid e-mail")
+                    }
+                } catch(e: FirebaseAuthUserCollisionException) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(applicationContext, "ERROR: Account Already Exists!", Toast.LENGTH_LONG).show()
-                        false.also { checkEmail = it }
+                    }
+                } catch(e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "Unknown Error", Toast.LENGTH_LONG).show()
                     }
                 }
             }

@@ -9,6 +9,9 @@ import com.example.myfinalproject_capstone.entity.DataUsers
 import com.example.myfinalproject_capstone.databinding.ActivitySignupCompanyBinding
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -26,7 +29,7 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
         private const val FIELD_IS_NOT_VALID = "Email tidak valid"
         private const val FIELD_REQUIRED = "Field tidak boleh kosong"
-        private const val FIELD_WRONG = "Email atau Password salah"
+        private const val FIELD_WEAK_PASS = "Password harus lebih dari 6 karakter"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +48,8 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if(register())
         {
-            val msg_email: String = binding?.etEmail?.text.toString()
-            val msg_password: String = binding?.etPassword?.text.toString()
+            val msg_email: String = binding?.etEmail?.text.toString().trim().lowercase()
+            val msg_password: String = binding?.etPassword?.text.toString().trim()
 
             if (msg_email.isEmpty()) {
                 binding?.etEmail?.error = FIELD_REQUIRED
@@ -83,7 +86,6 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
             val position = "Manager"
             val msg_code = "00001"
 
-
             val User = DataUsers(idUsers, msg_email, msg_password, msg_code, position)
             if (idUsers != null) {
                 database!!.child(idUsers).setValue(User).addOnCompleteListener {
@@ -113,10 +115,23 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
                         checkLoggedInState()
                         true.also { checkEmail = it }
                     }
-                } catch(e: Exception) {
+                } catch(e: FirebaseAuthWeakPasswordException) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "ERROR: Weak Password!", Toast.LENGTH_LONG).show()
+                        binding?.etPassword?.setError("Password must be more than 6 characters")
+                    }
+                } catch(e: FirebaseAuthInvalidCredentialsException) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "ERROR: Invalid Email!", Toast.LENGTH_LONG).show()
+                        binding?.etEmail?.setError("Please enter a valid e-mail")
+                    }
+                } catch(e: FirebaseAuthUserCollisionException) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(applicationContext, "ERROR: Account Already Exists!", Toast.LENGTH_LONG).show()
-                        false.also { checkEmail = it }
+                    }
+                } catch(e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "Unknown Error", Toast.LENGTH_LONG).show()
                     }
                 }
             }

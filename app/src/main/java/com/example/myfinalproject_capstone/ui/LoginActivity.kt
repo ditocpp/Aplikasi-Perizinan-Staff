@@ -53,7 +53,7 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         login()
-        val msg_email: String = binding?.etEmail?.text.toString().trim()
+        val msg_email: String = binding?.etEmail?.text.toString().trim().lowercase()
         val msg_password: String = binding?.etPassword?.text.toString().trim()
 
         if (msg_email.isEmpty()) {

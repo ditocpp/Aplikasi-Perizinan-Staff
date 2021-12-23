@@ -29,7 +29,7 @@ class AccountActivity : AppCompatActivity() {
 
         binding!!.btnSignOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            Toast.makeText(applicationContext, "Logging Out...", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Logging Out...", Toast.LENGTH_SHORT).show()
             val intent = Intent(this@AccountActivity, FirstActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
             startActivity(intent)
