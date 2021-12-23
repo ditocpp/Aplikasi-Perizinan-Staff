@@ -15,6 +15,9 @@
             android:name=".ui.staff.home.DetailLetterActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.manager.home.DetailLetterManagerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.AccountActivity"
             android:exported="false" />
         <activity

@@ -17,7 +17,6 @@ import com.example.myfinalproject_capstone.datastore.MainViewModel
 import com.example.myfinalproject_capstone.datastore.SettingPreferences
 import com.example.myfinalproject_capstone.datastore.ViewModelFactory
 import com.example.myfinalproject_capstone.entity.Letter
-import com.example.myfinalproject_capstone.ui.staff.LetterAddActivity
 import java.text.SimpleDateFormat
 import java.util.*
 

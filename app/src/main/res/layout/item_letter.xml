@@ -42,7 +42,7 @@
             android:layout_marginTop="8dp"
             android:gravity="start"
             android:text="@string/permit"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_item_date"
@@ -72,12 +72,14 @@
             android:gravity="start"
             android:text="@string/description"
             android:textSize="14sp"
+            style=""
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_name_staff"
             card_view:layout_constraintHorizontal_bias="0.218"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_name_staff"
-            card_view:layout_constraintVertical_bias="0.0" />
+            card_view:layout_constraintVertical_bias="0.0"
+            android:maxLines="1"/>
 
         <TextView
             android:id="@+id/tv_permit_durationStart"
@@ -96,13 +98,14 @@
             android:id="@+id/tv_permit_durationFinish"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:gravity="start"
             android:text="@string/waktu_izin"
             android:textSize="14sp"
             card_view:layout_constraintBottom_toBottomOf="@+id/tv_permit_durationStart"
+            card_view:layout_constraintStart_toEndOf="@+id/textView"
             card_view:layout_constraintTop_toTopOf="@+id/tv_permit_durationStart"
             card_view:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="131dp"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -133,12 +136,10 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:text="@string/tv_sampai_dengan"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_permit_durationStart"
-            card_view:layout_constraintEnd_toStartOf="@+id/tv_permit_durationFinish"
-            card_view:layout_constraintHorizontal_bias="0.50"
-            card_view:layout_constraintStart_toEndOf="@+id/tv_permit_durationStart"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_permit_durationStart" />
+            card_view:layout_constraintBottom_toBottomOf="@+id/tv_permit_durationFinish"
+            card_view:layout_constraintStart_toEndOf="@+id/tv_permit_durationStart" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
