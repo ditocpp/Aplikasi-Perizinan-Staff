@@ -98,12 +98,14 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
                             val moveIntent = Intent(this@LoginActivity, StaffHomeActivity::class.java)
                             moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                             startActivity(moveIntent)
+                            finish()
                         } else if (msg_email.equals(ds.child("email").value)
                             && msg_password.equals(ds.child("password").value)
                             && ds.child("position").value == "Manager"){
                             val moveIntent = Intent(this@LoginActivity, ManagerHomeActivity::class.java)
                             moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                             startActivity(moveIntent)
+                            finish()
                         }
                     }
                 } else {

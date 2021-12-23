@@ -92,6 +92,7 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
                     val moveIntent = Intent(this@SignupActivity, StaffHomeActivity::class.java)
                     moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                     startActivity(moveIntent)
+                    finish()
                 }.addOnFailureListener {
                     Toast.makeText(applicationContext, "Failed to Save", Toast.LENGTH_SHORT).show()
                 }
