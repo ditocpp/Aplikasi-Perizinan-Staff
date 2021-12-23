@@ -10,5 +10,6 @@ data class Letter (
     var companyID: String? = null,
     var durationStart: String? = null,
     var durationFinish: String? = null,
+    var noted:String? = null,
     var status: String? = null
 )
