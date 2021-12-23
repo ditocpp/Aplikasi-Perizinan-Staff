@@ -38,6 +38,7 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         private const val FIELD_IS_NOT_VALID = "Email tidak valid"
         private const val FIELD_REQUIRED = "Field tidak boleh kosong"
         private const val FIELD_WEAK_PASS = "Password harus lebih dari 6 karakter"
+        private const val FIELD_INVALID_CODE = "Kode Perushaan tidak terdaftar"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,40 +98,37 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
 
             val idUsers = database!!.push().key
             val position = "Staff"
-            var codeCheck = false
 
             database!!.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    snapshot.children.forEach{
                         if(snapshot.exists()) {
                             for(ds in snapshot.children) {
                                 if (msg_code.equals(ds.child("codeCompany").value)) {
-                                    codeCheck = true
+                                    val User = DataUsers(idUsers, msg_email, msg_password, msg_code, position)
+                                    if (idUsers != null) {
+                                        database!!.child(idUsers).setValue(User).addOnCompleteListener {
+                                            datastore(idUsers, msg_email, msg_password, msg_code, position)
+                                            val moveIntent = Intent(this@SignupActivity, StaffHomeActivity::class.java)
+                                            moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
+                                            startActivity(moveIntent)
+                                        }.addOnFailureListener {
+                                            Toast.makeText(applicationContext, "Failed to Save", Toast.LENGTH_SHORT).show()
+                                        }
+                                    } else {
+                                        Toast.makeText(applicationContext, "Failed in idUsers", Toast.LENGTH_SHORT).show()
+                                    }
+                                    break
+                                } else {
+                                    binding?.etCode?.error = FIELD_INVALID_CODE
+                                    break
                                 }
                             }
                         }
-                    }
                 }
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(applicationContext, "Database Error!", Toast.LENGTH_LONG).show()
                 }
             })
-
-            val User = DataUsers(idUsers, msg_email, msg_password, msg_code, position)
-            if (idUsers != null && codeCheck) {
-                database!!.child(idUsers).setValue(User).addOnCompleteListener {
-                    datastore(idUsers, msg_email, msg_password, msg_code, position)
-                    val moveIntent = Intent(this@SignupActivity, StaffHomeActivity::class.java)
-                    moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
-                    startActivity(moveIntent)
-                }.addOnFailureListener {
-                    Toast.makeText(applicationContext, "Failed to Save", Toast.LENGTH_SHORT).show()
-                }
-            } else if (idUsers == null) {
-                Toast.makeText(applicationContext, "Failed in idUsers", Toast.LENGTH_SHORT).show()
-            } else if (!codeCheck) {
-                Toast.makeText(applicationContext, "Wrong Company Code!", Toast.LENGTH_SHORT).show()
-            }
         } catch (ex: Exception) {
             Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
         }

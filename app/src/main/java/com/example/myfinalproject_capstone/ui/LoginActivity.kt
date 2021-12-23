@@ -35,6 +35,7 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
         private const val FIELD_IS_NOT_VALID = "Email tidak valid"
         private const val FIELD_REQUIRED = "Field tidak boleh kosong"
+        private const val FIELD_WRONG_EMAIL_PASS = "E-mail/Password salah atau tidak terdaftar"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,10 +109,13 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
                             val moveIntent = Intent(this@LoginActivity, ManagerHomeActivity::class.java)
                             moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                             startActivity(moveIntent)
+                        } else {
+                            binding?.etEmail?.error = FIELD_WRONG_EMAIL_PASS
+                            binding?.etPassword?.error = FIELD_WRONG_EMAIL_PASS
                         }
                     }
                 } else {
-                    Toast.makeText(applicationContext, "Email do Not Exist", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Email does Not Exist", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onCancelled(error: DatabaseError) {

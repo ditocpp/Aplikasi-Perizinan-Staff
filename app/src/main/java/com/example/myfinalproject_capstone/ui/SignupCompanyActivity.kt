@@ -101,16 +101,15 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
 
             database!!.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    snapshot.children.forEach{
                         if(snapshot.exists()) {
                             for(ds in snapshot.children) {
-                                while (msg_code.equals(ds.child("codeCompany").value)) {
+                                if (msg_code.equals(ds.child("codeCompany").value)) {
                                     randomNumber = (1..99999).random()
                                     msg_code = String . format ("%05d", randomNumber)
+                                    break
                                 }
                             }
                         }
-                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
