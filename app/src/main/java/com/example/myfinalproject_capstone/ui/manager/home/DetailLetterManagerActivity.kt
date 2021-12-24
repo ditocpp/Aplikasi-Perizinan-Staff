@@ -73,7 +73,7 @@ class DetailLetterManagerActivity : AppCompatActivity(){
                 val letterID = intent.getStringExtra(DetailLetterActivity.EXTRA_LETTER).toString()
 
                 val letter = Letter(letterID, getCurrentDate(), newTypeLetter, nameStaff, newDescription, staffID,
-                    getCompanyID(), newStartDate, newFinishDate, noted, "0")
+                    getCompanyID(), newStartDate, newFinishDate, noted, "1")
 
                 letterDB?.setValue(letter)
 
