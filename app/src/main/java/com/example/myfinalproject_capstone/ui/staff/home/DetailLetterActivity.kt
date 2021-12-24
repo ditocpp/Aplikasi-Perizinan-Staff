@@ -26,6 +26,7 @@ class DetailLetterActivity : AppCompatActivity(){
     private lateinit var binding: ActivityDetailLetterBinding
     private var database: DatabaseReference? = null
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "dataUser")
+    private var noted: String = ""
 
 
     companion object {
@@ -81,7 +82,7 @@ class DetailLetterActivity : AppCompatActivity(){
         val newStartDate: String = binding.edtStartDatePicker.text.toString().trim()
         val newFinishDate: String = binding.edtEndDatePicker.text.toString().trim()
         val name = getNameStaff()
-        val noted = ""
+
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Update Letter")
@@ -124,6 +125,7 @@ class DetailLetterActivity : AppCompatActivity(){
                             binding.edtDescription.setText(ds.child("description").value as String)
                             binding.edtStartDatePicker.setText(ds.child("durationStart").value as String)
                             binding.edtEndDatePicker.setText(ds.child("durationFinish").value as String)
+                            binding.noted.setText(ds.child("noted").value as String)
                         }
                     }
                 }

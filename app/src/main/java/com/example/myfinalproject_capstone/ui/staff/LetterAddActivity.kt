@@ -91,8 +91,9 @@ class LetterAddActivity : AppCompatActivity() {
             val durationStart = binding.edtStartDatePicker.text.toString().trim()
             val durationFinish = binding.edtEndDatePicker.text.toString().trim()
             val status = "3"
+            val noted = ""
 
-            val letter = Letter(letterID, inputDate, title, namestaff, description, staffID, companyID, durationStart, durationFinish, "", status)
+            val letter = Letter(letterID, inputDate, title, namestaff, description, staffID, companyID, durationStart, durationFinish, noted, status)
             try {
                 if (letterID != null) {
                     database!!.child(letterID).setValue(letter).addOnCompleteListener {
