@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.map
 class SettingPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
     private val ID_KEY = stringPreferencesKey("id")
+    private val NAME_KEY = stringPreferencesKey("name")
     private val EMAIL_KEY = stringPreferencesKey("email")
     private val PASSWORD_KEY = stringPreferencesKey("password")
     private val CODECOMPANY_KEY = stringPreferencesKey("codeCompany")
@@ -27,9 +28,16 @@ class SettingPreferences private constructor(private val dataStore: DataStore<Pr
         }
     }
 
-    suspend fun saveUserSetting(id: String, email: String, password: String, codeCompany: String, position: String) {
+    fun getNameStaff(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[NAME_KEY] ?: "Null"
+        }
+    }
+
+    suspend fun saveUserSetting(id: String, name: String, email: String, password: String, codeCompany: String, position: String) {
         dataStore.edit { preferences ->
             preferences[ID_KEY] = id
+            preferences[NAME_KEY] = name
             preferences[EMAIL_KEY] = email
             preferences[PASSWORD_KEY] = password
             preferences[CODECOMPANY_KEY] = codeCompany

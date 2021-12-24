@@ -5,6 +5,7 @@ data class Letter (
     var letterID: String? = null,
     var inputDate: String? = null,
     var title: String? = null,
+    var nameStaff: String? = null,
     var description: String? = null,
     var staffID: String? = null,
     var companyID: String? = null,

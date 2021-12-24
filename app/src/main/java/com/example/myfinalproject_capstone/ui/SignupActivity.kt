@@ -98,16 +98,17 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
 
             val idUsers = database!!.push().key
             val position = "Staff"
+            val nameStaff = ""
 
             database!!.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                         if(snapshot.exists()) {
                             for(ds in snapshot.children) {
                                 if (msg_code.equals(ds.child("codeCompany").value)) {
-                                    val User = DataUsers(idUsers, msg_email, msg_password, msg_code, position)
+                                    val User = DataUsers(idUsers, nameStaff, msg_email, msg_password, msg_code, position)
                                     if (idUsers != null) {
                                         database!!.child(idUsers).setValue(User).addOnCompleteListener {
-                                            datastore(idUsers, msg_email, msg_password, msg_code, position)
+                                            datastore(idUsers, nameStaff, msg_email, msg_password, msg_code, position)
                                             val moveIntent = Intent(this@SignupActivity, StaffHomeActivity::class.java)
                                             moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                                             startActivity(moveIntent)
@@ -118,10 +119,11 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
                                         Toast.makeText(applicationContext, "Failed in idUsers", Toast.LENGTH_SHORT).show()
                                     }
                                     break
-                                } else {
-                                    binding?.etCode?.error = FIELD_INVALID_CODE
-                                    break
                                 }
+//                                else {
+//                                    binding?.etCode?.error = FIELD_INVALID_CODE
+//                                    break
+//                                }
                             }
                         }
                 }
@@ -134,13 +136,13 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun datastore(id: String, email: String, password: String, codeCompany: String, position: String) {
+    private fun datastore(id: String, name: String, email: String, password: String, codeCompany: String, position: String) {
         val pref = SettingPreferences.getInstance(dataStore)
         val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
             MainViewModel::class.java
         )
 
-        mainViewModel.saveUserSetting(id, email, password, codeCompany, position)
+        mainViewModel.saveUserSetting(id, name, email, password, codeCompany, position)
     }
 
 /*

@@ -80,6 +80,8 @@ class DetailLetterActivity : AppCompatActivity(){
         val newTypeLetter: String = binding.edtTypeLeave.text.toString().trim()
         val newStartDate: String = binding.edtStartDatePicker.text.toString().trim()
         val newFinishDate: String = binding.edtEndDatePicker.text.toString().trim()
+        val name = ""
+        val noted = ""
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Update Letter")
@@ -93,8 +95,8 @@ class DetailLetterActivity : AppCompatActivity(){
 
                 val letterID = intent.getStringExtra(EXTRA_LETTER).toString()
 
-                val letter = Letter(letterID, getCurrentDate(), newTypeLetter, newDescription, getUserID(),
-                    getCompanyID(), newStartDate, newFinishDate, null, "3")
+                val letter = Letter(letterID, getCurrentDate(), newTypeLetter, name, newDescription, getUserID(),
+                    getCompanyID(), newStartDate, newFinishDate, noted, "3")
 
                 letterDB?.setValue(letter)
 

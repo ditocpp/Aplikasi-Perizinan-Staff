@@ -18,7 +18,6 @@ import com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -91,7 +90,7 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
                             && msg_password.equals(ds.child("password").value)
                             && ds.child("position").value == "Staff") {
 
-                                datastore(ds.child("idUser").value as String, ds.child("email").value as String,
+                                datastore(ds.child("idUser").value as String, ds.child("name").value as String, ds.child("email").value as String,
                                     ds.child("password").value as String, ds.child("codeCompany").value as String,
                                     ds.child("position").value as String)
 
@@ -102,9 +101,9 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
                             && msg_password.equals(ds.child("password").value)
                             && ds.child("position").value == "Manager"){
 
-                                datastore(ds.child("idUser").value as String, ds.child("email").value as String,
-                                    ds.child("password").value as String, ds.child("codeCompany").value as String,
-                                    ds.child("position").value as String)
+                            datastore(ds.child("idUser").value as String, ds.child("name").value as String, ds.child("email").value as String,
+                                ds.child("password").value as String, ds.child("codeCompany").value as String,
+                                ds.child("position").value as String)
 
                             val moveIntent = Intent(this@LoginActivity, ManagerHomeActivity::class.java)
                             moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
@@ -124,13 +123,20 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 
-    private fun datastore(id: String, email: String, password: String, codeCompany: String, position: String) {
+    private fun datastore(
+        id: String,
+        name:String,
+        email: String,
+        password: String,
+        codeCompany: String,
+        position: String
+    ) {
         val pref = SettingPreferences.getInstance(dataStore)
         val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
             MainViewModel::class.java
         )
 
-        mainViewModel.saveUserSetting(id, email, password, codeCompany, position)
+        mainViewModel.saveUserSetting(id, name, email, password, codeCompany, position)
     }
 /*
     private fun login() {

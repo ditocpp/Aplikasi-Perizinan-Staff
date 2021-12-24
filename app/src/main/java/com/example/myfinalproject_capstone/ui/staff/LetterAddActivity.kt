@@ -84,6 +84,7 @@ class LetterAddActivity : AppCompatActivity() {
             val letterID = database!!.push().key
             val inputDate = getCurrentDate()
             val title = binding.edtTypeLeave.text.toString().trim()
+            val namestaff = getNameStaff()
             val description = binding.edtDescription.text.toString().trim()
             val staffID = getUserID()
             val companyID = getCompanyID()
@@ -91,7 +92,7 @@ class LetterAddActivity : AppCompatActivity() {
             val durationFinish = binding.edtEndDatePicker.text.toString().trim()
             val status = "3"
 
-            val letter = Letter(letterID, inputDate, title, description, staffID, companyID, durationStart, durationFinish, "", status)
+            val letter = Letter(letterID, inputDate, title, namestaff, description, staffID, companyID, durationStart, durationFinish, "", status)
             try {
                 if (letterID != null) {
                     database!!.child(letterID).setValue(letter).addOnCompleteListener {
@@ -177,6 +178,22 @@ class LetterAddActivity : AppCompatActivity() {
         )
 
         return userId
+    }
+
+    private fun getNameStaff(): String? {
+        var nameStaff: String? = null
+        val pref = SettingPreferences.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
+
+        mainViewModel.getNameStaff().observe(this,
+            { userCompanyID: String ->
+                nameStaff = userCompanyID
+            }
+        )
+
+        return nameStaff
     }
 
     fun getCurrentDate():String{

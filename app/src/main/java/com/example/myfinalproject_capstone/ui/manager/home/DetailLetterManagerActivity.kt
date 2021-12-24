@@ -29,12 +29,6 @@ class DetailLetterManagerActivity : AppCompatActivity(){
     private lateinit var binding: ActivityDetailLetterManagerBinding
     private var database: DatabaseReference? = null
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "dataUser")
-    private lateinit var newDescription: String
-    private lateinit var newTypeLetter: String
-    private lateinit var newStartDate: String
-    private lateinit var newFinishDate: String
-    private lateinit var noted: String
-
     private lateinit var staffID: String
 
 
@@ -48,7 +42,6 @@ class DetailLetterManagerActivity : AppCompatActivity(){
         database = FirebaseDatabase.getInstance("https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Letters")
 
-
         binding = ActivityDetailLetterManagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -60,15 +53,16 @@ class DetailLetterManagerActivity : AppCompatActivity(){
     }
 
     private fun noteRejected() {
-        newDescription = binding.edtDescription.text.toString().trim()
-        newTypeLetter = binding.edtTypeLeave.text.toString().trim()
-        newStartDate = binding.edtStartDatePicker.text.toString().trim()
-        newFinishDate = binding.edtEndDatePicker.text.toString().trim()
-        noted = binding.noted.text.toString().trim()
+        val newDescription = binding.edtDescription.text.toString().trim()
+        val newTypeLetter = binding.edtTypeLeave.text.toString().trim()
+        val newStartDate= binding.edtStartDatePicker.text.toString().trim()
+        val newFinishDate= binding.edtEndDatePicker.text.toString().trim()
+        val noted: String = binding.noted.text.toString().trim()
+        val nameStaff = ""
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Update Letter")
-        builder.setMessage("You Want to Reject This Letter? ")
+        builder.setMessage("You Want to Update This Letter? ")
         builder.setPositiveButton(
             "Yes") { dialog, id ->
             if (noted.isEmpty()) {
@@ -78,8 +72,8 @@ class DetailLetterManagerActivity : AppCompatActivity(){
 
                 val letterID = intent.getStringExtra(DetailLetterActivity.EXTRA_LETTER).toString()
 
-                val letter = Letter(letterID, getCurrentDate(), newTypeLetter, newDescription, staffID,
-                    getCompanyID(), newStartDate, newFinishDate, noted, "1")
+                val letter = Letter(letterID, getCurrentDate(), newTypeLetter, nameStaff, newDescription, staffID,
+                    getCompanyID(), newStartDate, newFinishDate, noted, "0")
 
                 letterDB?.setValue(letter)
 
@@ -97,11 +91,12 @@ class DetailLetterManagerActivity : AppCompatActivity(){
     }
 
     private fun noteAppproved() {
-        newDescription = binding.edtDescription.text.toString().trim()
-        newTypeLetter = binding.edtTypeLeave.text.toString().trim()
-        newStartDate = binding.edtStartDatePicker.text.toString().trim()
-        newFinishDate = binding.edtEndDatePicker.text.toString().trim()
-        noted = binding.noted.text.toString().trim()
+        val newDescription = binding.edtDescription.text.toString().trim()
+        val newTypeLetter: String = binding.edtTypeLeave.text.toString().trim()
+        val newStartDate: String = binding.edtStartDatePicker.text.toString().trim()
+        val newFinishDate: String = binding.edtEndDatePicker.text.toString().trim()
+        val noted: String = binding.noted.text.toString().trim()
+        val nameStaff = ""
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Update Letter")
@@ -115,7 +110,7 @@ class DetailLetterManagerActivity : AppCompatActivity(){
 
                 val letterID = intent.getStringExtra(DetailLetterActivity.EXTRA_LETTER).toString()
 
-                val letter = Letter(letterID, getCurrentDate(), newTypeLetter, newDescription, staffID,
+                val letter = Letter(letterID, getCurrentDate(), newTypeLetter, nameStaff, newDescription, staffID,
                     getCompanyID(), newStartDate, newFinishDate, noted, "0")
 
                 letterDB?.setValue(letter)
