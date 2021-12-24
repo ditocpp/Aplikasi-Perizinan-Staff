@@ -97,7 +97,9 @@ class LetterAddActivity : AppCompatActivity() {
                 if (letterID != null) {
                     database!!.child(letterID).setValue(letter).addOnCompleteListener {
                         val intent = Intent(this@LetterAddActivity, StaffHomeActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                         startActivity(intent)
+                        finish()
                         Toast.makeText(applicationContext, "Berhasil Disimpan", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
                         Toast.makeText(applicationContext, "Failed Saved", Toast.LENGTH_SHORT).show()

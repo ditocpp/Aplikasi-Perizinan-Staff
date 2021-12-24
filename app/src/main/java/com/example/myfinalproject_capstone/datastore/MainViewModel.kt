@@ -19,6 +19,10 @@ class MainViewModel(private val pref: SettingPreferences) : ViewModel() {
         return pref.getNameStaff().asLiveData()
     }
 
+    fun getPosition(): LiveData<String> {
+        return pref.getPosition().asLiveData()
+    }
+
     fun saveUserSetting(id: String, name: String, email: String, password: String, codeCompany: String, position: String) {
         viewModelScope.launch {
             pref.saveUserSetting(id, name, email, password, codeCompany, position)

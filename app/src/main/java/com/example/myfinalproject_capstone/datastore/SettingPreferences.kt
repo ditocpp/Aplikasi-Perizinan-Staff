@@ -34,6 +34,12 @@ class SettingPreferences private constructor(private val dataStore: DataStore<Pr
         }
     }
 
+    fun getPosition(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[POSITION_KEY] ?: "Null"
+        }
+    }
+
     suspend fun saveUserSetting(id: String, name: String, email: String, password: String, codeCompany: String, position: String) {
         dataStore.edit { preferences ->
             preferences[ID_KEY] = id
