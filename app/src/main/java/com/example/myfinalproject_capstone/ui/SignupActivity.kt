@@ -16,22 +16,12 @@ import com.example.myfinalproject_capstone.datastore.MainViewModel
 import com.example.myfinalproject_capstone.datastore.SettingPreferences
 import com.example.myfinalproject_capstone.datastore.ViewModelFactory
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.database.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class SignupActivity : AppCompatActivity(), View.OnClickListener {
 
     private var binding: ActivitySignupBinding? = null
     private var database: DatabaseReference? = null
-    private lateinit var auth: FirebaseAuth
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "dataUser")
 
     companion object {
@@ -47,12 +37,9 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         binding!!.btnSignUp.setOnClickListener(this)
-
-        auth = FirebaseAuth.getInstance()
     }
 
     override fun onClick(v: View?) {
-        //if(register()) {
             val msg_name: String = binding?.etNameUser?.text.toString().trim()
             val msg_email: String = binding?.etEmail?.text.toString().trim()
             val msg_password: String = binding?.etPassword?.text.toString().trim()

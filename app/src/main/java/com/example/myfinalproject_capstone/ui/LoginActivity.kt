@@ -16,19 +16,13 @@ import com.example.myfinalproject_capstone.datastore.SettingPreferences
 import com.example.myfinalproject_capstone.datastore.ViewModelFactory
 import com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class
 LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private var binding: ActivityLoginBinding? = null
     private var database: DatabaseReference? = null
-    private lateinit var auth: FirebaseAuth
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "dataUser")
 
     companion object {
@@ -46,12 +40,9 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         database = FirebaseDatabase.getInstance("https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/")
             .getReference("Users")
-
-        auth = FirebaseAuth.getInstance()
     }
 
     override fun onClick(v: View?) {
-        //login()
         val msg_email: String = binding?.etEmail?.text.toString().trim().lowercase()
         val msg_password: String = binding?.etPassword?.text.toString().trim()
 
@@ -138,34 +129,7 @@ LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         mainViewModel.saveUserSetting(id, name, email, password, codeCompany, position)
     }
-/*
-    private fun login() {
-        val email : String = binding?.etEmail?.text.toString().trim().lowercase()
-        val password : String = binding?.etPassword?.text.toString().trim()
-        if(email.isNotEmpty() && password.isNotEmpty()) {
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    auth.signInWithEmailAndPassword(email, password).await()
-                    withContext(Dispatchers.Main) {
-                        checkLoggedInState()
-                    }
-                } catch(e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(applicationContext, "Error: User Not Found!", Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
-        }
-    }
 
-    private fun checkLoggedInState() {
-        if(auth.currentUser == null) {
-            Toast.makeText(applicationContext, "You Are Not Logged In", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(applicationContext, "You Are Logged In", Toast.LENGTH_LONG).show()
-        }
-    }
-*/
     override fun onDestroy() {
         super.onDestroy()
         database = null

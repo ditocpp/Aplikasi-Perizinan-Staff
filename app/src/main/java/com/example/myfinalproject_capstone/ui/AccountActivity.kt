@@ -16,7 +16,6 @@ import com.example.myfinalproject_capstone.databinding.ActivityFirstBinding
 import com.example.myfinalproject_capstone.datastore.MainViewModel
 import com.example.myfinalproject_capstone.datastore.SettingPreferences
 import com.example.myfinalproject_capstone.datastore.ViewModelFactory
-import com.google.firebase.auth.FirebaseAuth
 
 class AccountActivity : AppCompatActivity() {
 
@@ -32,8 +31,14 @@ class AccountActivity : AppCompatActivity() {
         getUser()
 
         binding!!.btnSignOut.setOnClickListener {
-            //FirebaseAuth.getInstance().signOut()
             Toast.makeText(applicationContext, "Logging Out...", Toast.LENGTH_SHORT).show()
+
+            val pref = SettingPreferences.getInstance(dataStore)
+            val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+                MainViewModel::class.java
+            )
+            val clear = ""
+            mainViewModel.saveUserSetting(clear, clear, clear, clear, clear, clear)
             val intent = Intent(this@AccountActivity, FirstActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
             startActivity(intent)

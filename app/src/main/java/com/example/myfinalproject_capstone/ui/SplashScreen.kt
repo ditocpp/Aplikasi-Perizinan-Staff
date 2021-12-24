@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -18,7 +17,6 @@ import com.example.myfinalproject_capstone.datastore.SettingPreferences
 import com.example.myfinalproject_capstone.datastore.ViewModelFactory
 import com.example.myfinalproject_capstone.ui.manager.home.ManagerHomeActivity
 import com.example.myfinalproject_capstone.ui.staff.home.StaffHomeActivity
-import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
@@ -59,9 +57,5 @@ class SplashScreen : AppCompatActivity() {
             }
         )
         return userPos
-    }
-
-    private fun checkLoggedInState() {
-            TODO("Automatically bring the user to the respective Activity (i.e = staff to staffHome, manager to managerHome)")
     }
 }

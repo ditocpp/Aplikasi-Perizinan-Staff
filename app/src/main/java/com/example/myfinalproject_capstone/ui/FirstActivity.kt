@@ -18,14 +18,10 @@ class FirstActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        //checkLoggedInState()
-
         binding!!.btnLogin.setOnClickListener(this)
         binding!!.btnSignupCompany.setOnClickListener(this)
         binding!!.btnSignupUser.setOnClickListener(this)
     }
-
-
 
     override fun onClick(v: View?) {
         when(v?.id) {
