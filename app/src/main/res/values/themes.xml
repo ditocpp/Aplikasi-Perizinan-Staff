@@ -16,7 +16,7 @@
 
     <style name="ButtonGeneral">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">60dp</item>
         <item name="cornerRadius">20dp</item>
     </style>
 
