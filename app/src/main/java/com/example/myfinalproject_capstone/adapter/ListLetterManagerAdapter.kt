@@ -27,6 +27,7 @@ class ListLetterManagerAdapter(private val listSurat: ArrayList<Letter>) : Recyc
             with(binding) {
                 tvItemDate.text = letter.inputDate.toString()
                 tvPermit.text = letter.title
+                tvNameStaff.text = letter.nameStaff
                 tvItemDescription.text = letter.description
                 tvPermitDurationStart.text = letter.durationStart
                 tvPermitDurationFinish.text = letter.durationFinish

@@ -30,6 +30,7 @@ class DetailLetterManagerActivity : AppCompatActivity(){
     private var database: DatabaseReference? = null
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "dataUser")
     private lateinit var staffID: String
+    private lateinit var nameStaff: String
 
 
     companion object {
@@ -58,7 +59,6 @@ class DetailLetterManagerActivity : AppCompatActivity(){
         val newStartDate= binding.edtStartDatePicker.text.toString().trim()
         val newFinishDate= binding.edtEndDatePicker.text.toString().trim()
         val noted: String = binding.noted.text.toString().trim()
-        val nameStaff = ""
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Update Letter")
@@ -96,7 +96,6 @@ class DetailLetterManagerActivity : AppCompatActivity(){
         val newStartDate: String = binding.edtStartDatePicker.text.toString().trim()
         val newFinishDate: String = binding.edtEndDatePicker.text.toString().trim()
         val noted: String = binding.noted.text.toString().trim()
-        val nameStaff = ""
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Update Letter")
@@ -144,6 +143,7 @@ class DetailLetterManagerActivity : AppCompatActivity(){
                             binding.edtStartDatePicker.setText(ds.child("durationStart").value as String)
                             binding.edtEndDatePicker.setText(ds.child("durationFinish").value as String)
                             staffID = ds.child("staffID").value as String
+                            nameStaff = ds.child("nameStaff").value as String
                         }
                     }
                 }
@@ -155,9 +155,7 @@ class DetailLetterManagerActivity : AppCompatActivity(){
     }
 
     private fun getCompanyID(): String {
-        var userCompanyId = "123"
-
-//        Nunggu Bima Edit login dulu soalnya belum kesimpen di data store untuk data akunnya
+        var userCompanyId = "null"
 
         val pref = SettingPreferences.getInstance(dataStore)
         val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
