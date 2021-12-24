@@ -56,8 +56,14 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         //if(register()) {
+            val msg_name: String = binding?.etNameUser?.text.toString().trim()
             val msg_email: String = binding?.etEmail?.text.toString().trim()
             val msg_password: String = binding?.etPassword?.text.toString().trim()
+
+            if (msg_name.isEmpty()) {
+                binding?.etNameUser?.error = FIELD_REQUIRED
+                return
+            }
 
             if (msg_email.isEmpty()) {
                 binding?.etEmail?.error = FIELD_REQUIRED
@@ -74,7 +80,7 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
 
             if (isValidEmail(msg_email)) {
                 try {
-                    connectDatabase(msg_email, msg_password)
+                    connectDatabase(msg_name, msg_email, msg_password)
                 } catch (ex: Exception) {
                     Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
                 }
@@ -89,14 +95,13 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    private fun connectDatabase(msg_email: String, msg_password: String) {
+    private fun connectDatabase(msg_name: String, msg_email: String, msg_password: String) {
         try {
             database = FirebaseDatabase.getInstance("https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/")
                 .getReference("Users")
 
             val idUsers = database!!.push().key
             val position = "Manager"
-            val name = ""
             var randomNumber = (1..99999).random()
             var msg_code = String.format("%05d", randomNumber)
 
@@ -118,10 +123,10 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
                 }
             })
 
-            val User = DataUsers(idUsers, name, msg_email, msg_password, msg_code, position)
+            val User = DataUsers(idUsers, msg_name, msg_email, msg_password, msg_code, position)
             if (idUsers != null) {
                 database!!.child(idUsers).setValue(User).addOnCompleteListener {
-                    datastore(idUsers, name, msg_email, msg_password, msg_code, position)
+                    datastore(idUsers, msg_name, msg_email, msg_password, msg_code, position)
                     val moveIntent = Intent(this@SignupCompanyActivity, ManagerHomeActivity::class.java)
                     moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                     startActivity(moveIntent)

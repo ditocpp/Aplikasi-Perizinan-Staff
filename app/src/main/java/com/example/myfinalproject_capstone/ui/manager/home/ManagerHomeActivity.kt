@@ -64,7 +64,7 @@ class ManagerHomeActivity : AppCompatActivity() {
     }
 
     private fun getCompanyID(): String {
-        var userCompanyId = "123"
+        var userCompanyId = "null"
 
         val pref = SettingPreferences.getInstance(dataStore)
         val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(

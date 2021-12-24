@@ -50,4 +50,5 @@
     <string name="noted">Catatan</string>
     <string name="company_code">Company Code</string>
     <string name="signup">SignUp</string>
+    <string name="name">Name</string>
 </resources>

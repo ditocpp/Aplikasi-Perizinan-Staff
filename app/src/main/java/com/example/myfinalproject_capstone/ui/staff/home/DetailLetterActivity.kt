@@ -80,7 +80,7 @@ class DetailLetterActivity : AppCompatActivity(){
         val newTypeLetter: String = binding.edtTypeLeave.text.toString().trim()
         val newStartDate: String = binding.edtStartDatePicker.text.toString().trim()
         val newFinishDate: String = binding.edtEndDatePicker.text.toString().trim()
-        val name = ""
+        val name = getNameStaff()
         val noted = ""
 
         val builder = AlertDialog.Builder(this)
@@ -172,6 +172,22 @@ class DetailLetterActivity : AppCompatActivity(){
         )
 
         return userId
+    }
+
+    private fun getNameStaff(): String? {
+        var nameStaff: String? = null
+        val pref = SettingPreferences.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
+
+        mainViewModel.getNameStaff().observe(this,
+            { userCompanyID: String ->
+                nameStaff = userCompanyID
+            }
+        )
+
+        return nameStaff
     }
 }
 

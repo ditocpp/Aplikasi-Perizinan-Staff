@@ -53,9 +53,15 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         //if(register()) {
+            val msg_name: String = binding?.etNameUser?.text.toString().trim()
             val msg_email: String = binding?.etEmail?.text.toString().trim()
             val msg_password: String = binding?.etPassword?.text.toString().trim()
             val msg_code: String = binding?.etCode?.text.toString().trim()
+
+            if (msg_name.isEmpty()) {
+                binding?.etNameUser?.error = FIELD_REQUIRED
+                return
+            }
 
             if (msg_email.isEmpty()) {
                 binding?.etEmail?.error = FIELD_REQUIRED
@@ -76,7 +82,7 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
 
             if (isValidEmail(msg_email)) {
                 try {
-                    connectDatabase(msg_email, msg_password, msg_code)
+                    connectDatabase(msg_name, msg_email, msg_password, msg_code)
                 } catch (ex: Exception) {
                     Toast.makeText(applicationContext, "Connection Failed", Toast.LENGTH_SHORT).show()
                 }
@@ -91,24 +97,23 @@ class SignupActivity : AppCompatActivity(), View.OnClickListener {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    private fun connectDatabase(msg_email: String, msg_password: String, msg_code: String) {
+    private fun connectDatabase(msg_name: String, msg_email: String, msg_password: String, msg_code: String) {
         try {
             database = FirebaseDatabase.getInstance("https://capstone-dicoding-default-rtdb.asia-southeast1.firebasedatabase.app/")
                 .getReference("Users")
 
             val idUsers = database!!.push().key
             val position = "Staff"
-            val nameStaff = ""
 
             database!!.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                         if(snapshot.exists()) {
                             for(ds in snapshot.children) {
                                 if (msg_code.equals(ds.child("codeCompany").value)) {
-                                    val User = DataUsers(idUsers, nameStaff, msg_email, msg_password, msg_code, position)
+                                    val User = DataUsers(idUsers, msg_name, msg_email, msg_password, msg_code, position)
                                     if (idUsers != null) {
                                         database!!.child(idUsers).setValue(User).addOnCompleteListener {
-                                            datastore(idUsers, nameStaff, msg_email, msg_password, msg_code, position)
+                                            datastore(idUsers, msg_name, msg_email, msg_password, msg_code, position)
                                             val moveIntent = Intent(this@SignupActivity, StaffHomeActivity::class.java)
                                             moveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // clears current and previous activity stack
                                             startActivity(moveIntent)
