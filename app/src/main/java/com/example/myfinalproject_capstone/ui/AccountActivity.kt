@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.example.myfinalproject_capstone.databinding.ActivityAccountBinding
@@ -40,27 +42,37 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun getUser() {
-        // Mendapatkan semua data dari data store
-        var userId: String? = null
-        var userCompanyId: String? = null
         val pref = SettingPreferences.getInstance(dataStore)
         val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
             MainViewModel::class.java
         )
 
-        mainViewModel.getID().observe(this,
+        mainViewModel.getNameStaff().observe(this,
             { userID: String ->
-                userId = userID
+                val nameUser = userID
+                binding?.tvName?.setText(nameUser)
             }
         )
 
         mainViewModel.getCompanyID().observe(this,
             { userCompanyID: String ->
-                userCompanyId = userCompanyID
+                val companyCodeUser = userCompanyID
+                binding?.tvCompanyCode?.setText(companyCodeUser)
             }
         )
 
-        binding?.tvCompanyCode?.text = userCompanyId
+        mainViewModel.getEmail().observe(this,
+            { userCompanyID: String ->
+                val emailUser = userCompanyID
+                binding?.tvEmail?.setText(emailUser)
+            }
+        )
 
+        mainViewModel.getPosition().observe(this,
+            { userCompanyID: String ->
+                val positionUser = userCompanyID
+                binding?.tvPosition?.setText(positionUser)
+            }
+        )
     }
 }

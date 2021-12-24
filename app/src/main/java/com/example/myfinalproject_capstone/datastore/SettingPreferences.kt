@@ -28,6 +28,12 @@ class SettingPreferences private constructor(private val dataStore: DataStore<Pr
         }
     }
 
+    fun getEmailUser(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[EMAIL_KEY] ?: "Null"
+        }
+    }
+
     fun getNameStaff(): Flow<String> {
         return dataStore.data.map { preferences ->
             preferences[NAME_KEY] ?: "Null"

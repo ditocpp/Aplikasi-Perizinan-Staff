@@ -81,6 +81,7 @@ class ManagerHomeActivity : AppCompatActivity() {
     }
 
     private fun dataLetter() {
+        list.clear()
         database?.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
@@ -105,7 +106,7 @@ class ManagerHomeActivity : AppCompatActivity() {
     private fun showRecyclerList() {
         binding.rvNotesManager.layoutManager = LinearLayoutManager(this)
         val listLetterManagerAdapter = ListLetterManagerAdapter(list)
-        listLetterManagerAdapter.notifyDataSetChanged() // Masih Belum Bisa
+        listLetterManagerAdapter.notifyDataSetChanged()
         binding.rvNotesManager.adapter = listLetterManagerAdapter
     }
 }
