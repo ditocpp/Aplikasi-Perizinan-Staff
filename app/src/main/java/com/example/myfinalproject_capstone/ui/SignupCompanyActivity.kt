@@ -87,26 +87,8 @@ class SignupCompanyActivity : AppCompatActivity(), View.OnClickListener {
 
             val idUsers = database!!.push().key
             val position = "Manager"
-            var randomNumber = (1..99999).random()
-            var msg_code = String.format("%05d", randomNumber)
-
-            database!!.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                        if(snapshot.exists()) {
-                            for(ds in snapshot.children) {
-                                if (msg_code.equals(ds.child("codeCompany").value)) {
-                                    randomNumber = (1..99999).random()
-                                    msg_code = String . format ("%05d", randomNumber)
-                                    break
-                                }
-                            }
-                        }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(applicationContext, "Database Error!", Toast.LENGTH_LONG).show()
-                }
-            })
+            val randomNumber = (1..99999).random()
+            val msg_code = String.format("%05d", randomNumber)
 
             val User = DataUsers(idUsers, msg_name, msg_email, msg_password, msg_code, position)
             if (idUsers != null) {
