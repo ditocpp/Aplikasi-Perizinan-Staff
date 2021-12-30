@@ -4,4 +4,7 @@
 
 Aplikasi ini menggunakan Firebase Realtime Database untuk menyimpan data surat dan pengguna.
 
+v.0.1 demo:
+https://www.youtube.com/watch?v=pvNljO5HUVM
+
 *Work in Progress*
